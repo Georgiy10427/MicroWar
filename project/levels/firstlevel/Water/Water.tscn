@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://levels/firstlevel/Water/Wakeup.gd" type="Script" id=1]
+[ext_resource path="res://assets/Water/Water_Body.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Water/WaterGravityTrigger.gd" type="Script" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 496.667, 11.4235 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 481.365, 1.62549 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 486.612, 41.9006 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 22.3037, 334.786 )
+
+[node name="Water" type="Node2D"]
+
+[node name="Water_Body" parent="." instance=ExtResource( 2 )]
+position = Vector2( 13054.7, 731.311 )
+k = 0.03
+d = 0.33
+distance_between_springs = 25.9
+border_thickness = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( 13029.5, 465.785 )
+rotation = -0.00235736
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 502.943, 663.477 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 505.266, 235.944 )
+rotation = -3.14159
+scale = Vector2( 1.1, 1 )
+shape = SubResource( 2 )
+one_way_collision = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Trigger" type="Area2D" parent="."]
+position = Vector2( 13043.3, 1022.06 )
+rotation = -3.14159
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
+position = Vector2( -491.24, -45.5825 )
+shape = SubResource( 3 )
+
+[node name="StartTrigger" type="Area2D" parent="."]
+position = Vector2( 10250.3, 11.9686 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StartTrigger"]
+position = Vector2( 29.7109, 338.857 )
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Trigger" to="Trigger" method="_on_Trigger_body_entered"]
+[connection signal="body_entered" from="StartTrigger" to="StartTrigger" method="_on_StartTrigger_body_entered"]

@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/Background/lobby1.png" type="Texture" id=1]
+[ext_resource path="res://scripts/LobbySoundtrack.vs" type="Script" id=2]
+[ext_resource path="res://levels/lobby/BackgroundAnimation.vs" type="Script" id=3]
+[ext_resource path="res://assets/Background/lobby2.png" type="Texture" id=6]
+[ext_resource path="res://assets/Dummy/dummy.png" type="Texture" id=8]
+[ext_resource path="res://assets/Sound/sound.mp3" type="AudioStream" id=9]
+[ext_resource path="res://assets/AidKit/AidKit.tscn" type="PackedScene" id=19]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 513.367, 12.0937 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 25.227, 3.39905 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 24.1675, 1.89822 )
+
+[sub_resource type="SegmentShape2D" id=5]
+a = Vector2( -134.99, 118.447 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 522.186, 11.9596 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 10, 233.152 )
+
+[node name="Lobby" type="Node2D"]
+position = Vector2( 0, -21.357 )
+scale = Vector2( 1.9, 1.9 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="Terrain" type="StaticBody2D" parent="."]
+position = Vector2( 10.2105, 366.252 )
+
+[node name="TerrainCollision" type="CollisionShape2D" parent="Terrain"]
+position = Vector2( 495.805, 53.6347 )
+shape = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Terrain"]
+position = Vector2( 495.628, -73.8014 )
+scale = Vector2( 5.33135, 5.54181 )
+frames = SubResource( 2 )
+animation = "idle"
+frame = 1
+playing = true
+script = ExtResource( 3 )
+
+[node name="FirstBorder" type="CollisionShape2D" parent="Terrain"]
+position = Vector2( 99.5895, -42.3785 )
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="SecondBorder" type="CollisionShape2D" parent="Terrain"]
+position = Vector2( 169.514, -90.7393 )
+shape = SubResource( 4 )
+one_way_collision = true
+
+[node name="Hill" type="CollisionShape2D" parent="Terrain"]
+position = Vector2( 540.015, -75.6807 )
+shape = SubResource( 5 )
+one_way_collision = true
+
+[node name="ScreenBorders" type="Node2D" parent="."]
+position = Vector2( 502.356, -12.157 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ScreenBorders"]
+
+[node name="UpBorder" type="CollisionShape2D" parent="ScreenBorders/StaticBody2D"]
+position = Vector2( -3.05176e-05, 0 )
+shape = SubResource( 6 )
+
+[node name="LeftBorder" type="CollisionShape2D" parent="ScreenBorders/StaticBody2D"]
+position = Vector2( -497.768, 222.716 )
+shape = SubResource( 7 )
+
+[node name="dummy" type="Sprite" parent="."]
+position = Vector2( 890.086, 392.164 )
+scale = Vector2( 4.2964, 4.466 )
+texture = ExtResource( 8 )
+offset = Vector2( 0, -4.75143 )
+
+[node name="dummy2" type="Sprite" parent="dummy"]
+position = Vector2( -12.0661, -4.80078 )
+scale = Vector2( 1.01564, 0.977069 )
+texture = ExtResource( 8 )
+
+[node name="dummy2" type="Sprite" parent="."]
+position = Vector2( 785.746, 374.176 )
+scale = Vector2( 4.23422, 4.23422 )
+texture = ExtResource( 8 )
+
+[node name="AidKit" parent="." instance=ExtResource( 19 )]
+position = Vector2( 536.022, 252.26 )
+scale = Vector2( 0.3, 0.3 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -0.207
+script = ExtResource( 2 )
+
+[node name="End" type="Position2D" parent="."]
+position = Vector2( 1017.56, 440.833 )

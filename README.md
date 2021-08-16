@@ -1,1 +1,3 @@
-# MicroWar
+# MicroWarios
+
+MicroWarios game.

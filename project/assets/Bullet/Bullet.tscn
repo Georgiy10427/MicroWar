@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/Bullet/punch3.png" type="Texture" id=1]
+[ext_resource path="res://assets/Bullet/punch2.png" type="Texture" id=2]
+[ext_resource path="res://assets/Bullet/punch4.png" type="Texture" id=3]
+[ext_resource path="res://assets/Bullet/punch1.png" type="Texture" id=4]
+[ext_resource path="res://scripts/Bullet.gd" type="Script" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 0.508051, 0.500463 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2.53175, 1.48933 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1.99423, 1.06465 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 1 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+} ]
+
+[node name="Bullet" type="Node2D"]
+position = Vector2( 4.14313, 9.04138 )
+scale = Vector2( 3, 3 )
+script = ExtResource( 5 )
+
+[node name="Plasma" type="Area2D" parent="."]
+gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Plasma"]
+position = Vector2( -1.48841, 0.506656 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Plasma"]
+position = Vector2( -2.49504, -0.499884 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Plasma"]
+position = Vector2( 1.46663, 1.50604 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Plasma"]
+position = Vector2( 1.29938e-05, -0.931583 )
+shape = SubResource( 3 )
+
+[node name="Bullet" type="AnimatedSprite" parent="Plasma"]
+frames = SubResource( 4 )
+animation = "idle"
+playing = true
+
+[node name="VisibilityNotifier" type="VisibilityNotifier2D" parent="Plasma"]
+position = Vector2( 0.473004, 0.341615 )
+scale = Vector2( 0.369328, 0.287866 )
+
+[connection signal="body_entered" from="Plasma" to="." method="_on_Plasma_body_entered"]
+[connection signal="screen_exited" from="Plasma/VisibilityNotifier" to="." method="_on_VisibilityNotifier2D_screen_exited"]

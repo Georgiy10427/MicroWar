@@ -1,0 +1,4 @@
+# Exclude docs, dolphin cache
+*doctave*/
+.directory
+assets/.directory

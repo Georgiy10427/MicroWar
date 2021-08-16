@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/AidKit/heal.png" type="Texture" id=1]
+[ext_resource path="res://assets/AidKit/Aid.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 35.4385, 50.3994 )
+
+[node name="AidKit" type="Node2D"]
+
+[node name="Aid" type="Area2D" parent="."]
+position = Vector2( 0.221591, 1.01449 )
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Aid"]
+position = Vector2( 35.8801, 50.8046 )
+shape = SubResource( 1 )
+one_way_collision_margin = 0.0
+
+[node name="heal" type="Sprite" parent="Aid"]
+position = Vector2( 34.5496, 50.4167 )
+scale = Vector2( 10, 10 )
+texture = ExtResource( 1 )
+
+[connection signal="body_entered" from="Aid" to="Aid" method="_on_Aid_body_entered"]
