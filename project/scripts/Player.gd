@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 const AutoRotate:bool = true # Autorotate player to move direction
-const DefaultSpeedValue:int = 200 # Player speed value
+const DefaultSpeedValue:int = 420 # Player speed value
 var Speed:int = DefaultSpeedValue # Player speed value (for processing)
 var Velocity:Vector2 = Vector2() # Player velocity
 var Health:int = 60 # Player's health
@@ -14,7 +14,7 @@ var shot_button_release:bool = true # Flag for shot key
 const Floor:Vector2 = Vector2(0, -1) # Floor 
 const Gravity:int = 2500 # Gravity value
 const JumpPowerUp:int = 800 # Jump power value
-const ShiftPower:float = 2.5 # Shift turbo value
+const ShiftPower:float = 1.25 # Shift turbo value
 const SitPower:int = -150 # Sit down power
 export (float, 0, 250) var inertia = 125 
 
@@ -54,6 +54,7 @@ func jump():
 			$AnimatedSprite.play("jump")
 			release_up = false
 		elif second_jump and release_up:
+			Input.start_joy_vibration(0, 0.45, 0.3, 0.23)
 			Velocity.y -= JumpPowerUp
 			second_jump = false
 			release_up = false
@@ -103,16 +104,21 @@ func shot_check():
 			plasma.SPEED = -plasma.SPEED
 		get_parent().add_child(plasma)
 		shot_button_release = false
+		Input.start_joy_vibration(0, 0.5, 0.5, 0.15)
 
 func physics():
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		if collision.collider.is_in_group("bodies"):
+			Input.start_joy_vibration(0, 0.3, 0.45, 0.2)
 			collision.collider.apply_central_impulse(-collision.normal * inertia)
+		#else:
+		#	Input.stop_joy_vibration(0)
 
 func die():
 	if god:
 		return
+	Input.start_joy_vibration(0, 0.9, 0.9, 0.9)
 	Velocity = Vector2.ZERO
 	$AnimatedSprite.play("posible")
 	Health = 0

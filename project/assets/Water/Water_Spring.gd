@@ -74,6 +74,7 @@ func _on_Area2D_body_entered(body):
 	# If we didn't the speed would be huge, depending on your game
 	if body.name == "Player":
 		var speed = body.Velocity.y * motion_factor
+		Input.start_joy_vibration(0, 0.1, 0.1, 1)
 		emit_signal("splash", index, speed)
 		if body.god:
 			return

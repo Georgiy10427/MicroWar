@@ -1,0 +1,3 @@
+gear.png - 1.899
+mixer.png - 3.2
+gamepad.png - 1.887

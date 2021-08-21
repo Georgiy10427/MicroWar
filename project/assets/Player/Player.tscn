@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://assets/Player/AssetPLayerArratprisel3_2.png" type="Texture" id=2]
-[ext_resource path="res://assets/Player/AssetPLayerArrat2.png" type="Texture" id=3]
-[ext_resource path="res://assets/Player/AssetPLayerArrat3.png" type="Texture" id=4]
-[ext_resource path="res://assets/Player/AssetPLayerArrat1.png" type="Texture" id=5]
-[ext_resource path="res://assets/Player/AssetPLayerArratprisel2_2.png" type="Texture" id=6]
-[ext_resource path="res://assets/Player/AssetPLayerArrat4.png" type="Texture" id=7]
-[ext_resource path="res://assets/Player/AssetPLayerArratprisel1_2.png" type="Texture" id=8]
+[ext_resource path="res://assets/Player/AssetPlayerArratprisel3_2.png" type="Texture" id=2]
+[ext_resource path="res://assets/Player/AssetPlayerArrat2.png" type="Texture" id=3]
+[ext_resource path="res://assets/Player/AssetPlayerArrat3.png" type="Texture" id=4]
+[ext_resource path="res://assets/Player/AssetPlayerArrat1.png" type="Texture" id=5]
+[ext_resource path="res://assets/Player/AssetPlayerArratprisel2_2.png" type="Texture" id=6]
+[ext_resource path="res://assets/Player/AssetPlayerArrat4.png" type="Texture" id=7]
+[ext_resource path="res://assets/Player/AssetPlayerArratprisel1_2.png" type="Texture" id=8]
 [ext_resource path="res://assets/GUI/Buttons/osb_right.png" type="Texture" id=9]
 [ext_resource path="res://assets/GUI/Buttons/osb_jump.png" type="Texture" id=10]
 [ext_resource path="res://assets/GUI/Buttons/osb_left.png" type="Texture" id=11]
@@ -35,14 +35,14 @@ animations = [ {
 "name": "SquatIdle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "posible",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ), ExtResource( 6 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "SquatAction",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ) ],
+"loop": true,
+"name": "posible",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
@@ -54,6 +54,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 
 [node name="Player" type="KinematicBody2D"]
+light_mask = 4
 scale = Vector2( 1.9, 1.9 )
 script = ExtResource( 1 )
 
@@ -67,6 +68,7 @@ shape = SubResource( 2 )
 disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 4
 scale = Vector2( 4.41596, 4.19006 )
 frames = SubResource( 3 )
 animation = "Idle"
@@ -77,6 +79,7 @@ animation = "Idle"
 layer = 0
 
 [node name="Right" type="TouchScreenButton" parent="UI"]
+visible = false
 position = Vector2( 271.181, 861 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 9 )
@@ -84,6 +87,7 @@ shape = SubResource( 4 )
 action = "ui_right"
 
 [node name="Left" type="TouchScreenButton" parent="UI"]
+visible = false
 position = Vector2( 85, 861 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 11 )
@@ -91,6 +95,7 @@ pressed = ExtResource( 11 )
 action = "ui_left"
 
 [node name="Up" type="TouchScreenButton" parent="UI"]
+visible = false
 position = Vector2( 1527, 691.578 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 10 )
@@ -98,6 +103,7 @@ pressed = ExtResource( 10 )
 action = "ui_up"
 
 [node name="Acceleration" type="TouchScreenButton" parent="UI"]
+visible = false
 position = Vector2( 1670.18, 810 )
 scale = Vector2( 2, 2 )
 normal = ExtResource( 9 )

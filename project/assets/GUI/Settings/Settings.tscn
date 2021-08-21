@@ -1,36 +1,137 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://assets/GUI/Settings/ui_elements/window.png" type="Texture" id=1]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/right_arrow.png" type="Texture" id=2]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/arrows/right_arrow.png" type="Texture" id=2]
 [ext_resource path="res://assets/GUI/Settings/font_theme.tres" type="Theme" id=3]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/left_arrow.png" type="Texture" id=4]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/arrows/left_arrow.png" type="Texture" id=4]
 [ext_resource path="res://assets/GUI/Settings/scripts/SelectFPS.gd" type="Script" id=5]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/vkladka2.png" type="Texture" id=6]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/checkbox_active.png" type="Texture" id=7]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/checkbox_not_active.png" type="Texture" id=8]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/gamepad_icon.png" type="Texture" id=9]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/mixer.png" type="Texture" id=10]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/gear.png" type="Texture" id=11]
+[ext_resource path="res://assets/GUI/Settings/values_theme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/checkbox/checkbox_active.png" type="Texture" id=7]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/checkbox/checkbox_not_active.png" type="Texture" id=8]
+[ext_resource path="res://assets/GUI/Settings/scripts/Settings.gd" type="Script" id=9]
 [ext_resource path="res://assets/GUI/Settings/scripts/SelectResolusion.gd" type="Script" id=12]
-[ext_resource path="res://assets/GUI/Settings/ui_elements/tab_frame1.png" type="Texture" id=13]
+[ext_resource path="res://assets/GUI/Settings/scripts/VSynsCheckbox.gd" type="Script" id=14]
+[ext_resource path="res://assets/GUI/Settings/GrathicsQualitySelect.gd" type="Script" id=15]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/info_button1.png" type="Texture" id=16]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/info_button2.png" type="Texture" id=17]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/tabs/sources/tab1.png" type="Texture" id=21]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/tabs/sources/tab3.png" type="Texture" id=22]
+[ext_resource path="res://assets/GUI/Settings/ui_elements/tabs/sources/tab2.png" type="Texture" id=24]
+[ext_resource path="res://assets/GUI/Settings/scripts/Window.gd" type="Script" id=25]
 
-[sub_resource type="StreamTexture" id=1]
-load_path = "res://.import/window.png-6d9eb4b202761657c2ecbb4c6c6be311.stex"
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "tab2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 21 ) ],
+"loop": false,
+"name": "tab1",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "tab3",
+"speed": 5.0
+} ]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 16 )
+region_rect = Rect2( 0, 0, 20, 18 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 17 )
+region_rect = Rect2( 0, 0, 20, 18 )
+
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 16 )
+region_rect = Rect2( 0, 0, 20, 18 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "close"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1e-05, 1e-05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 459, 206 ), Vector2( 958, 539 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "hidden"
+length = 0.1
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureRect:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TextureRect:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 958, 539 ), Vector2( 459, 206 ) ]
+}
 
 [node name="Settings" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 9 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [  ]
 }
 
-[node name="window_texture" type="Sprite" parent="."]
-visible = false
-position = Vector2( 383.434, 248.271 )
-scale = Vector2( 6.65, 6.65 )
-texture = SubResource( 1 )
-
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="MainWindow" type="CenterContainer" parent="."]
 anchor_left = -0.000122897
 anchor_top = 0.000436967
 anchor_right = -0.000122897
@@ -43,15 +144,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainWindow"]
 margin_left = 459.0
 margin_top = 206.0
 margin_right = 1457.0
 margin_bottom = 871.0
 texture = ExtResource( 1 )
 
-[node name="Container" type="VBoxContainer" parent="CenterContainer/TextureRect"]
-margin_left = 54.0
+[node name="Tab1" type="Button" parent="MainWindow/TextureRect"]
+margin_left = 26.0
+margin_top = 27.0
+margin_right = 113.0
+margin_bottom = 90.0
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tab2" type="Button" parent="MainWindow/TextureRect"]
+margin_left = 120.0
+margin_top = 29.0
+margin_right = 204.0
+margin_bottom = 81.0
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tab3" type="Button" parent="MainWindow/TextureRect"]
+margin_left = 213.0
+margin_top = 25.0
+margin_right = 294.0
+margin_bottom = 88.0
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Window" type="AnimatedSprite" parent="MainWindow/TextureRect"]
+position = Vector2( 498.762, 332.525 )
+scale = Vector2( 0.665, 0.665 )
+frames = SubResource( 1 )
+animation = "tab2"
+script = ExtResource( 25 )
+
+[node name="GrathicsSettings" type="VBoxContainer" parent="MainWindow/TextureRect"]
+visible = false
+margin_left = 54.0001
 margin_top = 119.0
 margin_right = 941.0
 margin_bottom = 611.0
@@ -59,7 +204,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="Title" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_right = 887.0
 margin_bottom = 32.0
 alignment = 1
@@ -67,7 +212,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grathics" type="Label" parent="CenterContainer/TextureRect/Container/Title"]
+[node name="Grathics" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Title"]
 margin_left = 361.0
 margin_right = 525.0
 margin_bottom = 32.0
@@ -78,7 +223,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="Space" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 36.0
 margin_right = 887.0
 margin_bottom = 68.0
@@ -87,7 +232,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grathics" type="Label" parent="CenterContainer/TextureRect/Container/Space"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Space"]
 margin_left = 443.0
 margin_right = 443.0
 margin_bottom = 32.0
@@ -97,7 +242,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Resolusion" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="Resolusion" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 72.0
 margin_right = 887.0
 margin_bottom = 107.0
@@ -106,7 +251,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/TextureRect/Container/Resolusion"]
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Resolusion"]
 margin_top = 1.0
 margin_right = 240.0
 margin_bottom = 33.0
@@ -117,7 +262,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="CenterContainer/TextureRect/Container/Resolusion"]
+[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Resolusion"]
 margin_left = 244.0
 margin_top = 1.0
 margin_right = 532.0
@@ -128,7 +273,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftButton" type="Button" parent="CenterContainer/TextureRect/Container/Resolusion"]
+[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/Resolusion"]
 margin_left = 536.0
 margin_right = 576.0
 margin_bottom = 35.0
@@ -137,7 +282,7 @@ enabled_focus_mode = 0
 icon = ExtResource( 4 )
 flat = true
 
-[node name="Value" type="Label" parent="CenterContainer/TextureRect/Container/Resolusion"]
+[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Resolusion"]
 margin_left = 580.0
 margin_top = 1.0
 margin_right = 820.0
@@ -149,7 +294,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightButton" type="Button" parent="CenterContainer/TextureRect/Container/Resolusion"]
+[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/Resolusion"]
 margin_left = 824.0
 margin_right = 864.0
 margin_bottom = 35.0
@@ -158,7 +303,7 @@ enabled_focus_mode = 0
 icon = ExtResource( 2 )
 flat = true
 
-[node name="Space2" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 111.0
 margin_right = 887.0
 margin_bottom = 143.0
@@ -167,7 +312,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grathics" type="Label" parent="CenterContainer/TextureRect/Container/Space2"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Space2"]
 margin_left = 443.0
 margin_right = 443.0
 margin_bottom = 32.0
@@ -177,15 +322,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GrathicsQuality" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="GrathicsQuality" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 147.0
 margin_right = 887.0
 margin_bottom = 182.0
+script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/TextureRect/Container/GrathicsQuality"]
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality"]
 margin_top = 1.0
 margin_right = 192.0
 margin_bottom = 33.0
@@ -196,7 +342,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="CenterContainer/TextureRect/Container/GrathicsQuality"]
+[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality"]
 margin_left = 196.0
 margin_top = 1.0
 margin_right = 580.0
@@ -207,21 +353,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftButton" type="Button" parent="CenterContainer/TextureRect/Container/GrathicsQuality"]
+[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality"]
 margin_left = 584.0
 margin_right = 624.0
 margin_bottom = 35.0
 focus_mode = 0
-mouse_filter = 2
 enabled_focus_mode = 0
 icon = ExtResource( 4 )
 flat = true
-align = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Value" type="Label" parent="CenterContainer/TextureRect/Container/GrathicsQuality"]
+[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality"]
 margin_left = 628.0
 margin_top = 1.0
 margin_right = 768.0
@@ -233,18 +374,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightButton" type="Button" parent="CenterContainer/TextureRect/Container/GrathicsQuality"]
+[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality"]
 margin_left = 772.0
 margin_right = 812.0
 margin_bottom = 35.0
 focus_mode = 0
-mouse_filter = 2
 enabled_focus_mode = 0
 icon = ExtResource( 2 )
 flat = true
-align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Space3" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 186.0
 margin_right = 887.0
 margin_bottom = 218.0
@@ -253,7 +395,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grathics" type="Label" parent="CenterContainer/TextureRect/Container/Space3"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Space3"]
 margin_left = 443.0
 margin_right = 443.0
 margin_bottom = 32.0
@@ -263,7 +405,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FPS" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="FPS" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 222.0
 margin_right = 887.0
 margin_bottom = 257.0
@@ -272,7 +414,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/TextureRect/Container/FPS"]
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/FPS"]
 margin_top = 1.0
 margin_right = 392.0
 margin_bottom = 33.0
@@ -283,20 +425,31 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="CenterContainer/TextureRect/Container/FPS"]
+[node name="Button" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/FPS"]
 margin_left = 396.0
+margin_right = 436.0
+margin_bottom = 35.0
+focus_mode = 0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+enabled_focus_mode = 0
+text = "          "
+
+[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/FPS"]
+margin_left = 440.0
 margin_top = 1.0
-margin_right = 624.0
+margin_right = 620.0
 margin_bottom = 33.0
 theme = ExtResource( 3 )
-text = "                   "
+text = "               "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftButton" type="Button" parent="CenterContainer/TextureRect/Container/FPS"]
-margin_left = 628.0
-margin_right = 668.0
+[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/FPS"]
+margin_left = 624.0
+margin_right = 664.0
 margin_bottom = 35.0
 focus_mode = 0
 enabled_focus_mode = 0
@@ -306,10 +459,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="CenterContainer/TextureRect/Container/FPS"]
-margin_left = 672.0
+[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/FPS"]
+margin_left = 668.0
 margin_top = 1.0
-margin_right = 720.0
+margin_right = 716.0
 margin_bottom = 33.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
@@ -318,9 +471,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightButton" type="Button" parent="CenterContainer/TextureRect/Container/FPS"]
-margin_left = 724.0
-margin_right = 764.0
+[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/FPS"]
+margin_left = 720.0
+margin_right = 760.0
 margin_bottom = 35.0
 focus_mode = 0
 enabled_focus_mode = 0
@@ -330,7 +483,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space4" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 261.0
 margin_right = 887.0
 margin_bottom = 293.0
@@ -339,7 +492,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grathics" type="Label" parent="CenterContainer/TextureRect/Container/Space4"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Space4"]
 margin_left = 443.0
 margin_right = 443.0
 margin_bottom = 32.0
@@ -349,15 +502,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSyns" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="VSyns" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 297.0
 margin_right = 887.0
 margin_bottom = 364.0
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="CenterContainer/TextureRect/Container/VSyns"]
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/VSyns"]
 margin_right = 312.0
 margin_bottom = 67.0
 theme = ExtResource( 3 )
@@ -368,21 +522,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="CenterContainer/TextureRect/Container/VSyns"]
+[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/VSyns"]
 margin_left = 316.0
 margin_top = 17.0
-margin_right = 664.0
+margin_right = 676.0
 margin_bottom = 49.0
 theme = ExtResource( 3 )
-text = "                             "
+text = "                              "
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="CheckBox" parent="CenterContainer/TextureRect/Container/VSyns"]
-margin_left = 668.0
-margin_right = 712.0
+[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/GrathicsSettings/VSyns"]
+margin_left = 680.0
+margin_right = 724.0
 margin_bottom = 67.0
 focus_mode = 0
 custom_icons/radio_checked = ExtResource( 8 )
@@ -391,7 +545,7 @@ custom_icons/radio_unchecked = ExtResource( 8 )
 custom_icons/unchecked = ExtResource( 8 )
 enabled_focus_mode = 0
 
-[node name="Space5" type="HBoxContainer" parent="CenterContainer/TextureRect/Container"]
+[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
 margin_top = 368.0
 margin_right = 887.0
 margin_bottom = 400.0
@@ -400,7 +554,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Grathics" type="Label" parent="CenterContainer/TextureRect/Container/Space5"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Space5"]
 margin_left = 443.0
 margin_right = 443.0
 margin_bottom = 32.0
@@ -410,44 +564,700 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="tab_frame1" type="Sprite" parent="."]
-position = Vector2( 641.751, 266.136 )
-scale = Vector2( 6.8491, 6.8491 )
-texture = ExtResource( 13 )
-
-[node name="TabsIcons" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+[node name="FullScreen" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
+margin_top = 404.0
+margin_right = 887.0
+margin_bottom = 454.0
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="vkladka2" type="Sprite" parent="TabsIcons"]
-position = Vector2( 531.115, 262.689 )
-scale = Vector2( 7.28651, 7.3757 )
-texture = ExtResource( 6 )
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/FullScreen"]
+margin_top = 9.0
+margin_right = 440.0
+margin_bottom = 41.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "Полноэкранный режим"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="gear" type="Sprite" parent="TabsIcons"]
-position = Vector2( 530.972, 266.178 )
-scale = Vector2( 2.29151, 2.29151 )
-texture = ExtResource( 11 )
+[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/FullScreen"]
+margin_left = 444.0
+margin_top = 9.0
+margin_right = 672.0
+margin_bottom = 41.0
+theme = ExtResource( 3 )
+text = "                   "
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="gamepad_icon" type="Sprite" parent="TabsIcons"]
-position = Vector2( 636.434, 263.118 )
-scale = Vector2( 1.88715, 1.88715 )
-texture = ExtResource( 9 )
+[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/GrathicsSettings/FullScreen"]
+margin_left = 676.0
+margin_right = 720.0
+margin_bottom = 50.0
+focus_mode = 0
+custom_icons/radio_checked = ExtResource( 8 )
+custom_icons/checked = ExtResource( 7 )
+custom_icons/radio_unchecked = ExtResource( 8 )
+custom_icons/unchecked = ExtResource( 8 )
+pressed = true
+enabled_focus_mode = 0
 
-[node name="tab_frame1" type="Sprite" parent="TabsIcons"]
-position = Vector2( 728.246, 265.859 )
-scale = Vector2( 6.6295, 6.6295 )
-texture = ExtResource( 13 )
+[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
+margin_top = 458.0
+margin_right = 887.0
+margin_bottom = 490.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="mixer" type="Sprite" parent="TabsIcons"]
-position = Vector2( 723.946, 264.19 )
-scale = Vector2( 3.2, 3.2 )
-texture = ExtResource( 10 )
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/Space6"]
+margin_left = 443.0
+margin_right = 443.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[connection signal="pressed" from="CenterContainer/TextureRect/Container/Resolusion/LeftButton" to="CenterContainer/TextureRect/Container/Resolusion" method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="CenterContainer/TextureRect/Container/Resolusion/RightButton" to="CenterContainer/TextureRect/Container/Resolusion" method="_on_RightButton_pressed"]
-[connection signal="pressed" from="CenterContainer/TextureRect/Container/FPS/LeftButton" to="CenterContainer/TextureRect/Container/FPS" method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="CenterContainer/TextureRect/Container/FPS/RightButton" to="CenterContainer/TextureRect/Container/FPS" method="_on_RightButton_pressed"]
+[node name="AudioSettings" type="VBoxContainer" parent="MainWindow/TextureRect"]
+margin_left = 54.0
+margin_top = 119.0
+margin_right = 941.0
+margin_bottom = 611.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmptyContainer" type="VBoxContainer" parent="MainWindow/TextureRect"]
+margin_left = 54.0
+margin_top = 119.0
+margin_right = 941.0
+margin_bottom = 611.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ControlSettings" type="ScrollContainer" parent="MainWindow/TextureRect"]
+margin_left = 54.0
+margin_top = 119.0
+margin_right = 941.0
+margin_bottom = 611.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Content" type="VBoxContainer" parent="MainWindow/TextureRect/ControlSettings"]
+margin_right = 875.0
+margin_bottom = 614.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_right = 875.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "Управление"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Space" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 36.0
+margin_right = 875.0
+margin_bottom = 68.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Space"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Subtitle" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 72.0
+margin_right = 875.0
+margin_bottom = 104.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Subtitle"]
+margin_right = 300.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "Главный герой"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Subtitle"]
+margin_left = 304.0
+margin_right = 549.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "   "
+align = 2
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/Subtitle"]
+margin_left = 553.0
+margin_right = 799.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.227451, 0.227451, 0.227451, 1 )
+enabled_focus_mode = 0
+text = "Выбрать скин"
+flat = true
+
+[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Subtitle"]
+margin_left = 803.0
+margin_right = 875.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+text = "      "
+align = 3
+
+[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 108.0
+margin_right = 875.0
+margin_bottom = 140.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Space2"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WalkingForward" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 144.0
+margin_right = 875.0
+margin_bottom = 176.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/WalkingForward"]
+margin_right = 324.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "  Ходьба вперёд"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/WalkingForward"]
+margin_left = 328.0
+margin_right = 555.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "   "
+align = 2
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/WalkingForward"]
+margin_left = 559.0
+margin_right = 787.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.227451, 0.227451, 0.227451, 1 )
+enabled_focus_mode = 0
+text = "Нажимайте"
+flat = true
+
+[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/WalkingForward"]
+margin_left = 791.0
+margin_right = 875.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+text = "       "
+align = 3
+
+[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 180.0
+margin_right = 875.0
+margin_bottom = 212.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Space3"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WalkingBackward" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 216.0
+margin_right = 875.0
+margin_bottom = 248.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/WalkingBackward"]
+margin_right = 300.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "  Ходьба назад"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/WalkingBackward"]
+margin_left = 304.0
+margin_right = 549.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "         "
+align = 2
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/WalkingBackward"]
+margin_left = 553.0
+margin_right = 799.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.227451, 0.227451, 0.227451, 1 )
+enabled_focus_mode = 0
+text = "Нажимайте"
+flat = true
+
+[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/WalkingBackward"]
+margin_left = 803.0
+margin_right = 875.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+text = "      "
+align = 3
+
+[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 252.0
+margin_right = 875.0
+margin_bottom = 284.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Space4"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Jump" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 288.0
+margin_right = 875.0
+margin_bottom = 320.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Jump"]
+margin_right = 164.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "  Прыжок"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Jump"]
+margin_left = 168.0
+margin_right = 505.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "                    "
+align = 2
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/Jump"]
+margin_left = 509.0
+margin_right = 847.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.227451, 0.227451, 0.227451, 1 )
+enabled_focus_mode = 0
+text = "Нажимайте"
+flat = true
+
+[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Jump"]
+margin_left = 851.0
+margin_right = 875.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+text = "  "
+align = 3
+
+[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 324.0
+margin_right = 875.0
+margin_bottom = 356.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Space5"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Squat" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 360.0
+margin_right = 875.0
+margin_bottom = 392.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Squat"]
+margin_right = 264.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "  Приседание"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Squat"]
+margin_left = 268.0
+margin_right = 537.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "   "
+align = 2
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/Squat"]
+margin_left = 541.0
+margin_right = 811.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.227451, 0.227451, 0.227451, 1 )
+enabled_focus_mode = 0
+text = "Нажимайте"
+flat = true
+
+[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Squat"]
+margin_left = 815.0
+margin_right = 875.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+text = "     "
+align = 3
+
+[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 396.0
+margin_right = 875.0
+margin_bottom = 428.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Space6"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Run" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 432.0
+margin_right = 875.0
+margin_bottom = 464.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Run"]
+margin_right = 96.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "  Бег"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Run"]
+margin_left = 100.0
+margin_right = 483.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "         "
+align = 2
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/Run"]
+margin_left = 487.0
+margin_right = 871.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.227451, 0.227451, 0.227451, 1 )
+enabled_focus_mode = 0
+text = "Нажимайте"
+flat = true
+
+[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Run"]
+margin_left = 875.0
+margin_right = 875.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+align = 3
+
+[node name="Space7" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 468.0
+margin_right = 875.0
+margin_bottom = 500.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Space7"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shot" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 504.0
+margin_right = 875.0
+margin_bottom = 536.0
+rect_pivot_offset = Vector2( 125.393, 604.186 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Shot"]
+margin_right = 192.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "  Выстрел"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Shot"]
+margin_left = 196.0
+margin_right = 513.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "   "
+align = 2
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/Shot"]
+margin_left = 517.0
+margin_right = 835.0
+margin_bottom = 32.0
+focus_mode = 0
+size_flags_horizontal = 3
+theme = ExtResource( 6 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.227451, 0.227451, 0.227451, 1 )
+enabled_focus_mode = 0
+text = "Нажимайте"
+flat = true
+
+[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Shot"]
+margin_left = 839.0
+margin_right = 875.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+text = "   "
+align = 3
+
+[node name="Space8" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 540.0
+margin_right = 875.0
+margin_bottom = 572.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Space8"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 32.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MiddleBoy" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
+margin_top = 576.0
+margin_right = 875.0
+margin_bottom = 614.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/MiddleBoy"]
+margin_top = 3.0
+margin_right = 276.0
+margin_bottom = 35.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "  Ближний бой"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/MiddleBoy"]
+margin_left = 280.0
+margin_top = 3.0
+margin_right = 537.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+theme = ExtResource( 3 )
+text = "   "
+align = 2
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/MiddleBoy"]
+margin_left = 541.0
+margin_right = 799.0
+margin_bottom = 38.0
+focus_mode = 0
+size_flags_horizontal = 7
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
+custom_colors/font_color_pressed = Color( 0.227451, 0.227451, 0.227451, 1 )
+enabled_focus_mode = 0
+text = "ПКМ"
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/MiddleBoy"]
+margin_left = 803.0
+margin_top = 3.0
+margin_right = 875.0
+margin_bottom = 35.0
+theme = ExtResource( 3 )
+text = "      "
+align = 3
+
+[node name="CloseButton" type="Button" parent="MainWindow/TextureRect"]
+margin_left = 897.0
+margin_top = 26.0
+margin_right = 971.0
+margin_bottom = 79.0
+focus_mode = 0
+enabled_focus_mode = 0
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Animation" type="AnimationPlayer" parent="MainWindow"]
+anims/close = SubResource( 5 )
+anims/hidden = SubResource( 7 )
+anims/open = SubResource( 6 )
+
+[node name="Control" type="Control" parent="MainWindow"]
+margin_left = 958.0
+margin_top = 539.0
+margin_right = 958.0
+margin_bottom = 539.0
+
+[connection signal="pressed" from="MainWindow/TextureRect/Tab1" to="MainWindow/TextureRect/Window" method="_on_Tab1_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/Tab2" to="MainWindow/TextureRect/Window" method="_on_Tab2_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/Tab3" to="MainWindow/TextureRect/Window" method="_on_Tab3_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/Resolusion/LeftButton" to="MainWindow/TextureRect/GrathicsSettings/Resolusion" method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/Resolusion/RightButton" to="MainWindow/TextureRect/GrathicsSettings/Resolusion" method="_on_RightButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality/LeftButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality" method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality/RightButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsQuality" method="_on_RightButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/FPS/LeftButton" to="MainWindow/TextureRect/GrathicsSettings/FPS" method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/FPS/RightButton" to="MainWindow/TextureRect/GrathicsSettings/FPS" method="_on_RightButton_pressed"]
+[connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/VSyns/Value" to="MainWindow/TextureRect/GrathicsSettings/VSyns" method="_on_Value_toggled"]
+[connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/FullScreen/Value" to="MainWindow/TextureRect/GrathicsSettings/FullScreen" method="_on_Value_toggled"]
+[connection signal="pressed" from="MainWindow/TextureRect/CloseButton" to="." method="_on_CloseButton_pressed"]

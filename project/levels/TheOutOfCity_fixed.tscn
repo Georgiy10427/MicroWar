@@ -6,7 +6,6 @@
 [ext_resource path="res://levels/firstlevel/Scripts/Shredder.gd" type="Script" id=4]
 [ext_resource path="res://levels/firstlevel/Scripts/DeathTrigger.gd" type="Script" id=5]
 [ext_resource path="res://levels/firstlevel/Scripts/LoadPrevLevel.gd" type="Script" id=6]
-[ext_resource path="res://assets/SaveMessages/Button/SaveButton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://levels/firstlevel/Mold/mold_1.png" type="Texture" id=14]
 [ext_resource path="res://levels/firstlevel/Platform/platform_0.png" type="Texture" id=15]
 [ext_resource path="res://levels/firstlevel/Platform/platform_2.png" type="Texture" id=16]
@@ -53,6 +52,23 @@ extents = Vector2( 499.735, 27.9941 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 8186.74, 13.3048 )
+
+[sub_resource type="Environment" id=11]
+background_mode = 4
+fog_sun_color = Color( 1, 0.847059, 0.537255, 1 )
+auto_exposure_enabled = true
+auto_exposure_scale = 0.98
+auto_exposure_min_luma = 1.0
+auto_exposure_max_luma = 16.0
+auto_exposure_speed = 4.0
+ssao_enabled = true
+dof_blur_far_amount = 0.0
+dof_blur_near_enabled = true
+dof_blur_near_distance = 1.25
+glow_enabled = true
+glow_strength = 0.88
+glow_blend_mode = 0
+glow_bicubic_upscale = true
 
 [node name="The out of city" type="Node2D"]
 position = Vector2( 0, -19 )
@@ -341,7 +357,6 @@ position = Vector2( -34.4531, 5.83134 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 6 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Line2D" type="Line2D" parent="Turrel/RotationPoint"]
@@ -396,11 +411,8 @@ shape = SubResource( 10 )
 [node name="End" type="Position2D" parent="."]
 position = Vector2( 16517.9, 1223.83 )
 
-[node name="SaveButton" parent="." instance=ExtResource( 7 )]
-position = Vector2( 953.16, 1007.28 )
-scale = Vector2( 8, 8 )
-frame = 1
-playing = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 11 )
 
 [connection signal="body_entered" from="Point of non-return" to="Point of non-return" method="_on_Point_of_nonreturn_body_entered"]
 [connection signal="body_entered" from="LoadTrigger" to="LoadTrigger" method="_on_Load_body_entered"]
