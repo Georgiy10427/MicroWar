@@ -1,21 +1,21 @@
 extends KinematicBody2D
 
-const AutoRotate:bool = true # Autorotate player to move direction
-const DefaultSpeedValue:int = 420 # Player speed value
+export var DefaultSpeedValue:int = 420 # Player speed value
+export var AutoRotate:bool = true # Autorotate player to move direction
 var Speed:int = DefaultSpeedValue # Player speed value (for processing)
 var Velocity:Vector2 = Vector2() # Player velocity
-var Health:int = 60 # Player's health
-var Power:int = 100  # Player's power
+export var Health:int = 60 # Player's health
+export var Power:int = 100  # Player's power
 var second_jump:bool = true # Flag for double jump (Is allow second jump?)
 var release_up:bool = true # Flag for double jump (The space was released?)
 var is_squat:bool = false # Is squat state? 
 var allow_power:bool = true
 var shot_button_release:bool = true # Flag for shot key
 const Floor:Vector2 = Vector2(0, -1) # Floor 
-const Gravity:int = 2500 # Gravity value
-const JumpPowerUp:int = 800 # Jump power value
-const ShiftPower:float = 1.25 # Shift turbo value
-const SitPower:int = -150 # Sit down power
+export var Gravity:int = 2500 # Gravity value
+export var JumpPowerUp:int = 800 # Jump power value
+export var ShiftPower:float = 1.25 # Shift turbo value
+export var SitPower:int = -150 # Sit down power
 export (float, 0, 250) var inertia = 125 
 
 # Cheats

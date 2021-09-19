@@ -63,11 +63,6 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
-"loop": true,
-"name": "SquatIdle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "posible",
@@ -81,6 +76,11 @@ animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 3 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "SquatAction",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "SquatIdle",
 "speed": 5.0
 } ]
 
@@ -179,15 +179,24 @@ position = Vector2( 540.015, -75.6807 )
 shape = SubResource( 7 )
 one_way_collision = true
 
-[node name="dummy" type="Sprite" parent="."]
-position = Vector2( 1682.09, 398.164 )
-scale = Vector2( 8.162, 8.485 )
+[node name="Dummies" type="Node2D" parent="."]
+position = Vector2( 941.693, 228.134 )
+scale = Vector2( 10.1296, 10.5294 )
+
+[node name="dummy" type="Sprite" parent="Dummies"]
+position = Vector2( 73.0927, 16.148 )
+scale = Vector2( 0.80576, 0.805836 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -4.75143 )
 
-[node name="dummy2" type="Sprite" parent="dummy"]
-position = Vector2( -11.8195, -4.80079 )
-scale = Vector2( 1.01564, 0.977069 )
+[node name="dummy2" type="Sprite" parent="Dummies"]
+position = Vector2( 63.569, 12.2794 )
+scale = Vector2( 0.818362, 0.787357 )
+texture = ExtResource( 4 )
+
+[node name="dummy3" type="Sprite" parent="Dummies"]
+position = Vector2( 82.248, 12.2714 )
+scale = Vector2( 0.79421, 0.764048 )
 texture = ExtResource( 4 )
 
 [node name="AutoPlayer" type="KinematicBody2D" parent="."]
@@ -221,11 +230,6 @@ autostart = true
 
 [node name="StayTime" type="Timer" parent="AutoPlayer"]
 wait_time = 7.0
-
-[node name="dummy2" type="Sprite" parent="."]
-position = Vector2( 1774.83, 357.345 )
-scale = Vector2( 8.045, 8.045 )
-texture = ExtResource( 4 )
 
 [node name="Blur" type="Sprite" parent="."]
 material = SubResource( 12 )
