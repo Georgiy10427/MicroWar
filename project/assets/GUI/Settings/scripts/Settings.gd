@@ -4,7 +4,7 @@ onready var animation = $MainWindow/Animation
 onready var window = $MainWindow/TextureRect
 onready var frame_window = $MainWindow/TextureRect/Window 
 
-onready var tabs_containers: Array = \
+onready var tabs_container: Array = \
 			[
 			$MainWindow/TextureRect/GrathicsSettings,
 			$MainWindow/TextureRect/ControlSettings,
@@ -25,23 +25,25 @@ func close_window():
 	yield(get_tree().create_timer(0.3), "timeout")
 	return 0
 
+func open_tab(index: int, tabs_container: Array, frame_window: AnimatedSprite):
+	if index <= len(tabs_container) - 1:
+		for tab in tabs_container:
+			if tab != tabs_container[index]:
+				tab.visible = false
+			else:
+				tab.visible = true
+		frame_window.play("tab" + str(index + 1))
+	else:
+		print_debug("Error! Index the out of range.")
+
 func _on_Tab1_pressed():
-	frame_window.play("tab1")
-	tabs_containers[0].visible = true
-	tabs_containers[1].visible = false
-	tabs_containers[2].visible = false
+	open_tab(0, tabs_container, frame_window)
 	
 func _on_Tab2_pressed():
-	frame_window.play("tab2")
-	tabs_containers[0].visible = false
-	tabs_containers[1].visible = true
-	tabs_containers[2].visible = false
+	open_tab(1, tabs_container, frame_window)
 
 func _on_Tab3_pressed():
-	frame_window.play("tab3")
-	tabs_containers[0].visible = false
-	tabs_containers[1].visible = false
-	tabs_containers[2].visible = true
+	open_tab(2, tabs_container, frame_window)
 
 func _on_CloseButton_pressed():
 	close_window()
