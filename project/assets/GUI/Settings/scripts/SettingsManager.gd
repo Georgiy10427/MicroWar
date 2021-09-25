@@ -6,13 +6,19 @@ var config_path = "user://settings.cfg"
 export var player_forward = "ui_right"
 export var player_backward = "ui_left"
 export var player_jump = "ui_up"
+export var player_squat = "ui_squat"
+export var player_acceleration = "ui_acceleration"
+export var save_action = "ui_save"
+export var load_action = "ui_load"
+var actions = [player_forward, player_backward, player_jump,
+			   player_squat, player_acceleration, save_action,
+			   load_action]
 
 
 func _ready():
 	# Check actions
-	assert(InputMap.has_action(player_forward))
-	assert(InputMap.has_action(player_backward))
-	assert(InputMap.has_action(player_jump))
+	for action in actions:
+		assert(InputMap.has_action(action))
 	# Open config
 	var err = settings_config.load(config_path)
 	if err != OK:
@@ -22,7 +28,7 @@ func _ready():
 		print("Settings file does not exist. Creating default config...")
 		create_default_config(settings_config)
 	# Apply config settings
-	get_and_apply_settings(settings_config)
+	apply_settings(settings_config)
 	# Save config
 	err = settings_config.save(config_path)
 	if err != OK:
@@ -30,7 +36,7 @@ func _ready():
 	else:
 		print("Seccess save settings config file.")
 
-func get_and_apply_settings(config):
+func apply_resolution(config):
 	# Apply resolution and fullscreen mode
 	if config.get_value("Grathics", "fullscreen", true) != true:
 		# Get render resolution
@@ -43,7 +49,8 @@ func get_and_apply_settings(config):
 		OS.set_window_resizable(false)
 	else:
 		OS.window_fullscreen = true
-	
+
+func apply_quality(config):
 	# Apply grathics settings
 	if config.get_value("Grathics", "quality", "average") == "low":
 		# Low quality
@@ -60,31 +67,30 @@ func get_and_apply_settings(config):
 		ProjectSettings.set_setting("rendering/quality/subsurface_scattering/quality", 2)
 		ProjectSettings.set_setting("rendering/quality/depth/hdr", true)
 		ProjectSettings.set_setting("rendering/quality/filters/msaa", 3)
-	
+
+func apply_vsync(config):
 	if config.get_value("Grathics", "vsync", true) == true:
 		ProjectSettings.set_setting("display/window/vsync/use_vsync", true)
 	else:
 		ProjectSettings.set_setting("display/window/vsync/use_vsync", true)
-	
-	# Apply control settings
-	var player_forward_key = InputEventKey.new()
-	var player_backward_key = InputEventKey.new()
-	var player_jump_key = InputEventKey.new()
-	
-	player_forward_key = config.get_value("Control", "player_forward", 0)
-	player_backward_key = config.get_value("Control", "player_backward", 0)
-	player_jump_key = config.get_value("Control", "player_jump", 0)
-	
-	print(player_forward_key.scancode, player_backward_key.scancode, player_jump_key.scancode)
-	
-	# Erase actions
-	InputMap.action_erase_events(player_forward)
-	InputMap.action_erase_events(player_backward)
-	InputMap.action_erase_events(player_jump)
-	# Bind user actions
-	InputMap.action_add_event(player_forward, player_forward_key)
-	InputMap.action_add_event(player_backward, player_backward_key)
-	InputMap.action_add_event(player_jump, player_jump_key)
+
+func apply_control(config):
+	for action in actions:
+		var action_key = InputEventKey.new()
+		action_key = config.get_value("Control", action, 0)
+		InputMap.action_erase_events(action)
+		InputMap.action_add_event(action, action_key)
+
+func apply_audio(config):
+	var master_volume:float = config.get_value("Audio", "master", 0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), master_volume)
+
+func apply_settings(config):
+	apply_resolution(config)
+	apply_quality(config)
+	apply_vsync(config)
+	apply_control(config)
+	apply_audio(config)
 
 func create_default_config(config):
 	# Grathics
@@ -94,9 +100,7 @@ func create_default_config(config):
 	config.set_value("Grathics", "vsync", true)
 	config.set_value("Grathics", "fullscreen", true)
 	# Control
-	config.set_value("Control", "player_forward", 
-					InputMap.get_action_list(player_forward)[0])
-	config.set_value("Control", "player_backward", 
-					InputMap.get_action_list(player_backward)[0])
-	config.set_value("Control", "player_jump", 
-					InputMap.get_action_list(player_jump)[0])
+	for action in actions:
+		config.set_value("Control", action, InputMap.get_action_list(action)[0])
+	# Audio
+	config.set_value("Audio", "master", 1.0)

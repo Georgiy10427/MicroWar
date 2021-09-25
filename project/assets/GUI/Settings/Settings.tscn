@@ -28,11 +28,6 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 24 ) ],
-"loop": true,
-"name": "tab2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 21 ) ],
 "loop": false,
 "name": "tab1",
@@ -41,6 +36,11 @@ animations = [ {
 "frames": [ ExtResource( 22 ) ],
 "loop": true,
 "name": "tab3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ) ],
+"loop": true,
+"name": "tab2",
 "speed": 5.0
 } ]
 
@@ -685,6 +685,7 @@ __meta__ = {
 }
 
 [node name="ControlSettings" type="Control" parent="MainWindow/TextureRect"]
+visible = false
 margin_left = 54.0
 margin_top = 119.0
 margin_right = 54.0
@@ -782,7 +783,7 @@ __meta__ = {
 }
 
 [node name="Content" type="VBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings"]
-margin_right = 851.0
+margin_right = 861.0
 margin_bottom = 641.0
 size_flags_horizontal = 3
 __meta__ = {
@@ -1326,25 +1327,26 @@ theme = ExtResource( 6 )
 text = "       "
 align = 3
 
-[node name="AudioSettings" type="VBoxContainer" parent="MainWindow/TextureRect"]
-visible = false
-margin_left = 54.0
-margin_top = 119.0
-margin_right = 929.0
-margin_bottom = 621.0
+[node name="AudioSettings" type="Control" parent="MainWindow/TextureRect"]
+margin_left = -460.18
+margin_top = -206.0
+margin_right = -420.18
+margin_bottom = -166.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Head" type="VBoxContainer" parent="MainWindow/TextureRect/AudioSettings"]
-margin_right = 875.0
-margin_bottom = 137.0
+margin_left = 514.0
+margin_top = 325.0
+margin_right = 1393.0
+margin_bottom = 462.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Title" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/Head"]
-margin_right = 875.0
+margin_right = 879.0
 margin_bottom = 51.0
 theme = ExtResource( 10 )
 alignment = 1
@@ -1353,7 +1355,7 @@ __meta__ = {
 }
 
 [node name="Settings" type="Label" parent="MainWindow/TextureRect/AudioSettings/Head/Title"]
-margin_right = 875.0
+margin_right = 879.0
 margin_bottom = 51.0
 size_flags_horizontal = 3
 theme = ExtResource( 10 )
@@ -1366,7 +1368,7 @@ __meta__ = {
 
 [node name="Subtitle" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/Head"]
 margin_top = 55.0
-margin_right = 875.0
+margin_right = 879.0
 margin_bottom = 94.0
 size_flags_horizontal = 3
 alignment = 1
@@ -1375,8 +1377,8 @@ __meta__ = {
 }
 
 [node name="Grathics" type="Label" parent="MainWindow/TextureRect/AudioSettings/Head/Subtitle"]
-margin_left = 315.0
-margin_right = 559.0
+margin_left = 317.0
+margin_right = 561.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
@@ -1388,7 +1390,7 @@ __meta__ = {
 
 [node name="Space" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/Head"]
 margin_top = 98.0
-margin_right = 875.0
+margin_right = 879.0
 margin_bottom = 137.0
 alignment = 1
 __meta__ = {
@@ -1396,8 +1398,8 @@ __meta__ = {
 }
 
 [node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/Head/Space"]
-margin_left = 437.0
-margin_right = 437.0
+margin_left = 439.0
+margin_right = 439.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1405,446 +1407,70 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GrathicsParameters" type="ScrollContainer" parent="MainWindow/TextureRect/AudioSettings"]
-visible = false
-margin_top = 141.0
-margin_right = 887.0
-margin_bottom = 141.0
+[node name="AudioSettings" type="ScrollContainer" parent="MainWindow/TextureRect/AudioSettings"]
+margin_left = 514.0
+margin_top = 445.0
+margin_right = 1404.0
+margin_bottom = 822.0
 theme = ExtResource( 13 )
 scroll_horizontal_enabled = false
+scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters"]
-margin_right = 869.0
-margin_bottom = 479.0
-
-[node name="Resolusion" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_right = 869.0
-margin_bottom = 39.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings"]
+margin_right = 890.0
+margin_bottom = 353.0
 size_flags_horizontal = 3
-script = ExtResource( 12 )
+
+[node name="Volume" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_right = 890.0
+margin_bottom = 39.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion"]
-margin_right = 163.0
+[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Volume"]
+margin_right = 151.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Разрешение"
+text = "Громкость"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion"]
-margin_left = 167.0
-margin_right = 615.0
+[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Volume"]
+margin_left = 155.0
+margin_right = 638.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                                "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion"]
-margin_left = 619.0
-margin_right = 659.0
-margin_bottom = 39.0
-focus_mode = 0
-enabled_focus_mode = 0
-icon = ExtResource( 4 )
-flat = true
-
-[node name="Value" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion"]
-margin_left = 663.0
-margin_right = 825.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "1920 x 1080"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RightButton" type="Button" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion"]
-margin_left = 829.0
-margin_right = 869.0
-margin_bottom = 39.0
-focus_mode = 0
-enabled_focus_mode = 0
-icon = ExtResource( 2 )
-flat = true
-
-[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 43.0
-margin_right = 869.0
-margin_bottom = 82.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Space2"]
-margin_left = 434.0
-margin_right = 434.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="GrathicsQuality" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 86.0
-margin_right = 869.0
-margin_bottom = 125.0
-script = ExtResource( 15 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_right = 129.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Качество"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_left = 133.0
-margin_right = 637.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                                        "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_left = 641.0
-margin_right = 681.0
-margin_bottom = 39.0
-focus_mode = 0
-enabled_focus_mode = 0
-icon = ExtResource( 4 )
-flat = true
-
-[node name="Value" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_left = 685.0
-margin_right = 787.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Низкое"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RightButton" type="Button" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_left = 791.0
-margin_right = 831.0
-margin_bottom = 39.0
-focus_mode = 0
-enabled_focus_mode = 0
-icon = ExtResource( 2 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 129.0
-margin_right = 869.0
-margin_bottom = 168.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Space3"]
-margin_left = 434.0
-margin_right = 434.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FPS" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 172.0
-margin_right = 869.0
-margin_bottom = 211.0
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS"]
-margin_right = 279.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Фиксированный FPS"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS"]
-margin_left = 283.0
-margin_right = 323.0
-margin_bottom = 39.0
-focus_mode = 0
-custom_styles/hover = SubResource( 2 )
-custom_styles/pressed = SubResource( 3 )
-custom_styles/normal = SubResource( 4 )
-enabled_focus_mode = 0
-text = "          "
-
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS"]
-margin_left = 327.0
-margin_right = 670.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                 "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS"]
-margin_left = 674.0
-margin_right = 714.0
-margin_bottom = 39.0
-focus_mode = 0
-enabled_focus_mode = 0
-icon = ExtResource( 4 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Value" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS"]
-margin_left = 718.0
-margin_right = 750.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "30"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RightButton" type="Button" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS"]
-margin_left = 754.0
-margin_right = 794.0
-margin_bottom = 39.0
-focus_mode = 0
-enabled_focus_mode = 0
-icon = ExtResource( 2 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 215.0
-margin_right = 869.0
-margin_bottom = 254.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Space4"]
-margin_left = 434.0
-margin_right = 434.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VSyns" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 258.0
-margin_right = 869.0
-margin_bottom = 339.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/VSyns"]
-margin_right = 217.0
-margin_bottom = 81.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Вертикальная
-синхронизация"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/VSyns"]
-margin_left = 221.0
-margin_top = 21.0
-margin_right = 704.0
-margin_bottom = 60.0
 theme = ExtResource( 3 )
 text = "                                                                     "
-align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/VSyns"]
-margin_left = 708.0
-margin_right = 752.0
-margin_bottom = 81.0
-focus_mode = 0
-custom_icons/radio_checked = ExtResource( 8 )
-custom_icons/checked = ExtResource( 7 )
-custom_icons/radio_unchecked = ExtResource( 8 )
-custom_icons/unchecked = ExtResource( 8 )
-enabled_focus_mode = 0
-
-[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 343.0
-margin_right = 869.0
-margin_bottom = 382.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Space5"]
-margin_left = 434.0
-margin_right = 434.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="FullScreen" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 386.0
-margin_right = 869.0
-margin_bottom = 436.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FullScreen"]
-margin_top = 5.0
-margin_right = 327.0
-margin_bottom = 44.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Полноэкранный режим"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FullScreen"]
-margin_left = 331.0
-margin_top = 5.0
-margin_right = 702.0
-margin_bottom = 44.0
-theme = ExtResource( 3 )
-text = "                                                     "
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FullScreen"]
-margin_left = 706.0
-margin_right = 750.0
-margin_bottom = 50.0
-focus_mode = 0
-custom_icons/radio_checked = ExtResource( 8 )
-custom_icons/checked = ExtResource( 7 )
-custom_icons/radio_unchecked = ExtResource( 8 )
-custom_icons/unchecked = ExtResource( 8 )
-pressed = true
-enabled_focus_mode = 0
-
-[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer"]
-margin_top = 440.0
-margin_right = 869.0
-margin_bottom = 479.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Space6"]
-margin_left = 434.0
-margin_right = 434.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainWindow/TextureRect/AudioSettings"]
-margin_top = 141.0
-margin_right = 875.0
-margin_bottom = 464.0
-
-[node name="Volume" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer"]
-margin_right = 875.0
-margin_bottom = 39.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/Volume"]
-margin_right = 251.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Общая громкость"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/Volume"]
-margin_left = 255.0
-margin_right = 633.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                      "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/Volume"]
-margin_left = 637.0
-margin_right = 857.0
-margin_bottom = 34.0
+[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Volume"]
+margin_left = 642.0
+margin_top = 2.0
+margin_right = 872.0
+margin_bottom = 36.0
 grow_horizontal = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 custom_icons/grabber_disabled = ExtResource( 18 )
 custom_icons/grabber_highlight = ExtResource( 18 )
 custom_icons/grabber = ExtResource( 18 )
 custom_styles/slider = SubResource( 5 )
-value = 100.0
+value = 50.0
 rounded = true
 tick_count = 15
+ticks_on_borders = true
 
-[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/Volume"]
-margin_left = 861.0
-margin_right = 875.0
+[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Volume"]
+margin_left = 876.0
+margin_right = 890.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 text = "  "
@@ -1852,9 +1478,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer"]
+[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
 margin_top = 43.0
-margin_right = 875.0
+margin_right = 890.0
 margin_bottom = 63.0
 theme = ExtResource( 20 )
 alignment = 1
@@ -1862,9 +1488,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/Space3"]
-margin_left = 437.0
-margin_right = 437.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space3"]
+margin_left = 445.0
+margin_right = 445.0
 margin_bottom = 20.0
 theme = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1872,15 +1498,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SoundtrackCheckbox" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer"]
+[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+visible = false
 margin_top = 67.0
-margin_right = 875.0
+margin_right = 890.0
+margin_bottom = 87.0
+theme = ExtResource( 20 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space5"]
+margin_left = 445.0
+margin_right = 445.0
+margin_bottom = 20.0
+theme = ExtResource( 20 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundtrackCheckbox" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_top = 67.0
+margin_right = 890.0
 margin_bottom = 117.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
+[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
 margin_top = 5.0
 margin_right = 154.0
 margin_bottom = 44.0
@@ -1891,7 +1538,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
+[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
 margin_left = 158.0
 margin_top = 5.0
 margin_right = 732.0
@@ -1903,11 +1550,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
+[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
 margin_left = 736.0
 margin_right = 780.0
 margin_bottom = 50.0
 focus_mode = 0
+size_flags_vertical = 5
 custom_icons/radio_checked = ExtResource( 8 )
 custom_icons/checked = ExtResource( 7 )
 custom_icons/radio_unchecked = ExtResource( 8 )
@@ -1915,35 +1563,34 @@ custom_icons/unchecked = ExtResource( 8 )
 pressed = true
 enabled_focus_mode = 0
 
-[node name="Space" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer"]
-visible = false
-margin_top = 54.0
-margin_right = 875.0
-margin_bottom = 93.0
+[node name="SubSpace" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_top = 121.0
+margin_right = 890.0
+margin_bottom = 141.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/Space"]
-margin_left = 437.0
-margin_right = 437.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SubSpace"]
+margin_left = 445.0
+margin_right = 445.0
+margin_bottom = 20.0
+theme = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SoundtrackValue" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer"]
-margin_top = 121.0
-margin_right = 875.0
-margin_bottom = 160.0
+[node name="SoundtrackValue" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_top = 145.0
+margin_right = 890.0
+margin_bottom = 184.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundtrackValue"]
+[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackValue"]
 margin_right = 323.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
@@ -1953,7 +1600,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundtrackValue"]
+[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackValue"]
 margin_left = 327.0
 margin_right = 635.0
 margin_bottom = 39.0
@@ -1963,23 +1610,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundtrackValue"]
+[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackValue"]
 margin_left = 639.0
-margin_right = 857.0
-margin_bottom = 34.0
+margin_top = 2.0
+margin_right = 872.0
+margin_bottom = 36.0
 grow_horizontal = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 custom_icons/grabber_disabled = ExtResource( 18 )
 custom_icons/grabber_highlight = ExtResource( 18 )
 custom_icons/grabber = ExtResource( 18 )
 custom_styles/slider = SubResource( 6 )
-value = 100.0
+value = 50.0
 rounded = true
 tick_count = 15
+ticks_on_borders = true
 
-[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundtrackValue"]
-margin_left = 861.0
-margin_right = 875.0
+[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackValue"]
+margin_left = 876.0
+margin_right = 890.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 text = "  "
@@ -1987,18 +1637,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer"]
-margin_top = 164.0
-margin_right = 875.0
-margin_bottom = 184.0
+[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_top = 188.0
+margin_right = 890.0
+margin_bottom = 208.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/Space2"]
-margin_left = 437.0
-margin_right = 437.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space2"]
+margin_left = 445.0
+margin_right = 445.0
 margin_bottom = 20.0
 theme = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -2006,15 +1656,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SoundEffects" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer"]
-margin_top = 188.0
-margin_right = 875.0
-margin_bottom = 238.0
+[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_top = 212.0
+margin_right = 890.0
+margin_bottom = 232.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundEffects"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space6"]
+margin_left = 445.0
+margin_right = 445.0
+margin_bottom = 20.0
+theme = ExtResource( 20 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundEffects" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_top = 236.0
+margin_right = 890.0
+margin_bottom = 286.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundEffects"]
 margin_top = 5.0
 margin_right = 275.0
 margin_bottom = 44.0
@@ -2025,7 +1695,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundEffects"]
+[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundEffects"]
 margin_left = 279.0
 margin_top = 5.0
 margin_right = 734.0
@@ -2037,11 +1707,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/SoundEffects"]
+[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundEffects"]
 margin_left = 738.0
 margin_right = 782.0
 margin_bottom = 50.0
 focus_mode = 0
+size_flags_vertical = 5
 custom_icons/radio_checked = ExtResource( 8 )
 custom_icons/checked = ExtResource( 7 )
 custom_icons/radio_unchecked = ExtResource( 8 )
@@ -2049,55 +1720,95 @@ custom_icons/unchecked = ExtResource( 8 )
 pressed = true
 enabled_focus_mode = 0
 
-[node name="VolumeSoundEffects" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer"]
-margin_top = 242.0
-margin_right = 875.0
-margin_bottom = 323.0
+[node name="SubSpace2" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_top = 290.0
+margin_right = 890.0
+margin_bottom = 310.0
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/VolumeSoundEffects"]
-margin_right = 289.0
-margin_bottom = 81.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SubSpace2"]
+margin_left = 445.0
+margin_right = 445.0
+margin_bottom = 20.0
+theme = ExtResource( 20 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+visible = false
+margin_top = 266.0
+margin_right = 875.0
+margin_bottom = 286.0
+theme = ExtResource( 20 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space4"]
+margin_left = 437.0
+margin_right = 437.0
+margin_bottom = 20.0
+theme = ExtResource( 20 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VolumeSoundEffects" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+margin_top = 314.0
+margin_right = 890.0
+margin_bottom = 353.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/VolumeSoundEffects"]
+margin_right = 311.0
+margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Громкость 
-звуковых эффектов"
+text = "Громкость  эффектов"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/VolumeSoundEffects"]
-margin_left = 293.0
-margin_top = 21.0
-margin_right = 636.0
-margin_bottom = 60.0
+[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/VolumeSoundEffects"]
+margin_left = 315.0
+margin_right = 637.0
+margin_bottom = 39.0
 theme = ExtResource( 3 )
-text = "                                                 "
+text = "                                              "
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/VolumeSoundEffects"]
-margin_left = 640.0
-margin_right = 857.0
-margin_bottom = 34.0
+[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/VolumeSoundEffects"]
+margin_left = 641.0
+margin_top = 2.0
+margin_right = 872.0
+margin_bottom = 36.0
 grow_horizontal = 2
 size_flags_horizontal = 3
+size_flags_vertical = 4
 custom_icons/grabber_disabled = ExtResource( 18 )
 custom_icons/grabber_highlight = ExtResource( 18 )
 custom_icons/grabber = ExtResource( 18 )
 custom_styles/slider = SubResource( 7 )
-value = 100.0
+value = 50.0
 rounded = true
 tick_count = 15
+ticks_on_borders = true
 
-[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/VBoxContainer/VolumeSoundEffects"]
-margin_left = 861.0
-margin_top = 21.0
-margin_right = 875.0
-margin_bottom = 60.0
+[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/VolumeSoundEffects"]
+margin_left = 876.0
+margin_right = 890.0
+margin_bottom = 39.0
 theme = ExtResource( 3 )
 text = "  "
 __meta__ = {
@@ -2148,12 +1859,4 @@ margin_bottom = 539.0
 [connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FPS/RightButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FPS" method="_on_RightButton_pressed"]
 [connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/VSyns/Value" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/VSyns" method="_on_Value_toggled"]
 [connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FullScreen/Value" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FullScreen" method="_on_Value_toggled"]
-[connection signal="pressed" from="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion/LeftButton" to="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion" method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion/RightButton" to="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/Resolusion" method="_on_RightButton_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality/LeftButton" to="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality" method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality/RightButton" to="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/GrathicsQuality" method="_on_RightButton_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS/LeftButton" to="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS" method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS/RightButton" to="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FPS" method="_on_RightButton_pressed"]
-[connection signal="toggled" from="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/VSyns/Value" to="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/VSyns" method="_on_Value_toggled"]
-[connection signal="toggled" from="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FullScreen/Value" to="MainWindow/TextureRect/AudioSettings/GrathicsParameters/VBoxContainer/FullScreen" method="_on_Value_toggled"]
 [connection signal="pressed" from="MainWindow/TextureRect/CloseButton" to="." method="_on_CloseButton_pressed"]
