@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/Water/Water_Spring.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 10 )
+extents = Vector2( 3.3661, 3.73635 )
 
 [node name="Water_Spring" type="Node2D"]
 script = ExtResource( 2 )

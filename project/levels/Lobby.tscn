@@ -53,7 +53,6 @@ position = Vector2( 495.628, -73.8014 )
 scale = Vector2( 5.33135, 5.54181 )
 frames = SubResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 script = ExtResource( 3 )
 
@@ -75,30 +74,32 @@ one_way_collision = true
 [node name="ScreenBorders" type="Node2D" parent="."]
 position = Vector2( 502.356, -12.157 )
 
-[node name="StaticBody2D" type="StaticBody2D" parent="ScreenBorders"]
+[node name="ScreenBorders" type="StaticBody2D" parent="ScreenBorders"]
 
-[node name="UpBorder" type="CollisionShape2D" parent="ScreenBorders/StaticBody2D"]
+[node name="UpBorder" type="CollisionShape2D" parent="ScreenBorders/ScreenBorders"]
 position = Vector2( -3.05176e-05, 0 )
 shape = SubResource( 6 )
 
-[node name="LeftBorder" type="CollisionShape2D" parent="ScreenBorders/StaticBody2D"]
+[node name="LeftBorder" type="CollisionShape2D" parent="ScreenBorders/ScreenBorders"]
 position = Vector2( -497.768, 222.716 )
 shape = SubResource( 7 )
 
-[node name="dummy" type="Sprite" parent="."]
-position = Vector2( 890.086, 392.164 )
-scale = Vector2( 4.2964, 4.466 )
+[node name="Dummies" type="Node" parent="."]
+
+[node name="dummy" type="Sprite" parent="Dummies"]
+position = Vector2( 1691.16, 723.755 )
+scale = Vector2( 8.16316, 8.4854 )
 texture = ExtResource( 8 )
 offset = Vector2( 0, -4.75143 )
 
-[node name="dummy2" type="Sprite" parent="dummy"]
-position = Vector2( -12.0661, -4.80078 )
-scale = Vector2( 1.01564, 0.977069 )
+[node name="dummy2" type="Sprite" parent="Dummies"]
+position = Vector2( 1492.92, 689.577 )
+scale = Vector2( 8.04502, 8.04502 )
 texture = ExtResource( 8 )
 
-[node name="dummy2" type="Sprite" parent="."]
-position = Vector2( 785.746, 374.176 )
-scale = Vector2( 4.23422, 4.23422 )
+[node name="dummy3" type="Sprite" parent="Dummies"]
+position = Vector2( 1592.67, 683.018 )
+scale = Vector2( 8.29083, 8.29082 )
 texture = ExtResource( 8 )
 
 [node name="AidKit" parent="." instance=ExtResource( 19 )]
@@ -109,6 +110,7 @@ scale = Vector2( 0.3, 0.3 )
 stream = ExtResource( 9 )
 volume_db = -0.207
 script = ExtResource( 2 )
+allow_playing = true
 
 [node name="End" type="Position2D" parent="."]
 position = Vector2( 1017.56, 440.833 )

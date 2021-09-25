@@ -37,6 +37,7 @@ onready var water_body_area = $Water_Body_Area
 onready var splash_particle = preload("res://assets/Water/splash_particles.tscn")
 
 var sleep:bool = true
+var thread = Thread.new()
 
 # Initialize the spring array and all the springs
 func _ready():
@@ -72,6 +73,11 @@ func _ready():
 	collisionShape.set_shape(rectangle)
 
 func _physics_process(_delta):
+	thread.start(self, "water_process")
+	if thread.is_active():
+		thread.wait_to_finish()
+
+func water_process():
 	if sleep:
 		return
 	

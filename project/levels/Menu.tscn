@@ -1,25 +1,26 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://assets/GUI/Menu/vydelenie.png" type="Texture" id=1]
 [ext_resource path="res://assets/Background/lobby1.png" type="Texture" id=2]
-[ext_resource path="res://assets/Player/AssetPLayerArratprisel2_2.png" type="Texture" id=3]
+[ext_resource path="res://assets/Player/AssetPlayerArratprisel2_2.png" type="Texture" id=3]
 [ext_resource path="res://assets/Dummy/dummy.png" type="Texture" id=4]
-[ext_resource path="res://assets/Player/AssetPLayerArrat1.png" type="Texture" id=5]
+[ext_resource path="res://assets/Player/AssetPlayerArrat1.png" type="Texture" id=5]
 [ext_resource path="res://scripts/LobbySoundtrack.vs" type="Script" id=6]
 [ext_resource path="res://assets/GUI/Menu/Menu.gd" type="Script" id=7]
 [ext_resource path="res://scripts/AutoPlayer.gd" type="Script" id=8]
-[ext_resource path="res://assets/Player/AssetPLayerArrat3.png" type="Texture" id=9]
+[ext_resource path="res://assets/Player/AssetPlayerArrat3.png" type="Texture" id=9]
 [ext_resource path="res://assets/Background/lobby2.png" type="Texture" id=10]
-[ext_resource path="res://assets/Player/AssetPLayerArratprisel3_2.png" type="Texture" id=11]
+[ext_resource path="res://assets/Player/AssetPlayerArratprisel3_2.png" type="Texture" id=11]
 [ext_resource path="res://addons/transit/Transit.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/Player/AssetPLayerArrat4.png" type="Texture" id=13]
-[ext_resource path="res://assets/Player/AssetPLayerArratprisel1_2.png" type="Texture" id=14]
-[ext_resource path="res://assets/Player/AssetPLayerArrat2.png" type="Texture" id=15]
+[ext_resource path="res://assets/Player/AssetPlayerArrat4.png" type="Texture" id=13]
+[ext_resource path="res://assets/Player/AssetPlayerArratprisel1_2.png" type="Texture" id=14]
+[ext_resource path="res://assets/Player/AssetPlayerArrat2.png" type="Texture" id=15]
 [ext_resource path="res://assets/GUI/transparent.png" type="Texture" id=16]
 [ext_resource path="res://assets/GUI/Menu/menu.png" type="Texture" id=17]
 [ext_resource path="res://scripts/Save.gd" type="Script" id=18]
 [ext_resource path="res://assets/GUI/Settings/Settings.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/GUI/Menu/gray_select.png" type="Texture" id=20]
+[ext_resource path="res://assets/GUI/Menu/window_close.anim" type="Animation" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 513.367, 12.0937 )
@@ -57,16 +58,6 @@ animations = [ {
 "name": "Idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 15 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "Walk",
-"speed": 4.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 3 ), ExtResource( 11 ) ],
-"loop": true,
-"name": "SquatAction",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": true,
 "name": "jump",
@@ -75,6 +66,16 @@ animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "posible",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "Walk",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 14 ), ExtResource( 3 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "SquatAction",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ) ],
@@ -100,18 +101,36 @@ void fragment(){
 shader = SubResource( 11 )
 shader_param/lod = 1.5
 
-[sub_resource type="GDScript" id=13]
-script/source = "extends Button
-
-var enable:bool = false
-
-
-func _ready():
-	var time_machine:Node = find_node(\"TimeMachine\")
-"
+[sub_resource type="Animation" id=13]
+resource_name = "open"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 960, 540 ), Vector2( 774, 289 ) ]
+}
 
 [node name="Menu" type="Node2D"]
-position = Vector2( 0, -60.5811 )
+position = Vector2( 6.72717, 317.126 )
 script = ExtResource( 7 )
 
 [node name="Terrain" type="StaticBody2D" parent="."]
@@ -160,15 +179,24 @@ position = Vector2( 540.015, -75.6807 )
 shape = SubResource( 7 )
 one_way_collision = true
 
-[node name="dummy" type="Sprite" parent="."]
-position = Vector2( 1682.09, 398.164 )
-scale = Vector2( 8.162, 8.485 )
+[node name="Dummies" type="Node2D" parent="."]
+position = Vector2( 941.693, 228.134 )
+scale = Vector2( 10.1296, 10.5294 )
+
+[node name="dummy" type="Sprite" parent="Dummies"]
+position = Vector2( 73.0927, 16.148 )
+scale = Vector2( 0.80576, 0.805836 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -4.75143 )
 
-[node name="dummy2" type="Sprite" parent="dummy"]
-position = Vector2( -11.8195, -4.80079 )
-scale = Vector2( 1.01564, 0.977069 )
+[node name="dummy2" type="Sprite" parent="Dummies"]
+position = Vector2( 63.569, 12.2794 )
+scale = Vector2( 0.818362, 0.787357 )
+texture = ExtResource( 4 )
+
+[node name="dummy3" type="Sprite" parent="Dummies"]
+position = Vector2( 82.248, 12.2714 )
+scale = Vector2( 0.79421, 0.764048 )
 texture = ExtResource( 4 )
 
 [node name="AutoPlayer" type="KinematicBody2D" parent="."]
@@ -203,11 +231,6 @@ autostart = true
 [node name="StayTime" type="Timer" parent="AutoPlayer"]
 wait_time = 7.0
 
-[node name="dummy2" type="Sprite" parent="."]
-position = Vector2( 1774.83, 357.345 )
-scale = Vector2( 8.045, 8.045 )
-texture = ExtResource( 4 )
-
 [node name="Blur" type="Sprite" parent="."]
 material = SubResource( 12 )
 position = Vector2( 799.85, 270.44 )
@@ -215,8 +238,10 @@ scale = Vector2( 17.9126, 13.3 )
 texture = ExtResource( 16 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 937.362, 227.527 )
+position = Vector2( 635.688, 214.179 )
 current = true
+limit_left = 0
+limit_right = 1920
 
 [node name="Transit" parent="." instance=ExtResource( 12 )]
 margin_left = 1.48862
@@ -225,131 +250,138 @@ margin_right = 1.48862
 margin_bottom = 1.33894
 
 [node name="Settings" parent="." instance=ExtResource( 19 )]
+visible = false
 margin_left = -23.811
 margin_top = -312.699
 margin_right = -23.811
 margin_bottom = -312.699
 
-[node name="Menu" type="VBoxContainer" parent="."]
-visible = false
-margin_top = -318.0
-margin_right = 1011.0
-margin_bottom = 250.0
-rect_scale = Vector2( 1.9, 1.9 )
-alignment = 1
+[node name="Menu" type="CenterContainer" parent="."]
+margin_left = -6.84052
+margin_top = -325.953
+margin_right = 1913.16
+margin_bottom = 754.047
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
-margin_top = 284.0
-margin_right = 1011.0
-margin_bottom = 284.0
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="Menu/HBoxContainer"]
-margin_left = 505.0
-margin_right = 505.0
-
-[node name="menu" type="Sprite" parent="Menu/HBoxContainer/TextureRect"]
-position = Vector2( 13.464, -17.8619 )
-scale = Vector2( 3, 3 )
+[node name="Window" type="TextureRect" parent="Menu"]
+margin_left = 774.0
+margin_top = 289.0
+margin_right = 1145.0
+margin_bottom = 791.0
 texture = ExtResource( 17 )
 
-[node name="PlayButton" type="Button" parent="Menu/HBoxContainer/TextureRect"]
-margin_left = -53.0
-margin_top = -128.0
-margin_right = 79.0
-margin_bottom = -81.0
+[node name="PlayButton" type="Button" parent="Menu/Window"]
+margin_left = 59.0
+margin_top = 42.0
+margin_right = 190.0
+margin_bottom = 89.0
+rect_scale = Vector2( 1.9, 1.9 )
 focus_mode = 0
+enabled_focus_mode = 0
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="selected" type="Sprite" parent="Menu/HBoxContainer/TextureRect/PlayButton"]
-position = Vector2( 66.4596, 24.6217 )
-scale = Vector2( 2.99785, 2.99357 )
+[node name="selected" type="Sprite" parent="Menu/Window/PlayButton"]
+position = Vector2( 66.4767, 24.4652 )
+scale = Vector2( 2.99238, 2.95675 )
 texture = ExtResource( 1 )
 
-[node name="LoadButton" type="Button" parent="Menu/HBoxContainer/TextureRect"]
-margin_left = -53.5908
-margin_top = -69.5138
-margin_right = 78.4092
-margin_bottom = -22.5138
+[node name="LoadButton" type="Button" parent="Menu/Window"]
+margin_left = 57.6298
+margin_top = 151.242
+margin_right = 189.63
+margin_bottom = 198.242
+rect_scale = Vector2( 1.9, 1.9 )
 focus_mode = 0
+enabled_focus_mode = 0
 flat = true
-script = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="selected" type="Sprite" parent="Menu/HBoxContainer/TextureRect/LoadButton"]
+[node name="selected" type="Sprite" parent="Menu/Window/LoadButton"]
 visible = false
-position = Vector2( 67.4664, 23.6069 )
-scale = Vector2( 2.99633, 2.98568 )
+position = Vector2( 67.2801, 24.1658 )
+scale = Vector2( 2.98903, 2.91993 )
 texture = ExtResource( 1 )
 
-[node name="disabled" type="Sprite" parent="Menu/HBoxContainer/TextureRect/LoadButton"]
+[node name="disabled" type="Sprite" parent="Menu/Window/LoadButton"]
+visible = false
 position = Vector2( 67.4642, 23.6211 )
 scale = Vector2( 3.00015, 2.99572 )
 texture = ExtResource( 20 )
 
-[node name="SettingsButton" type="Button" parent="Menu/HBoxContainer/TextureRect"]
-margin_left = -52.0
-margin_top = -12.0
-margin_right = 78.0
-margin_bottom = 34.0
+[node name="SettingsButton" type="Button" parent="Menu/Window"]
+margin_left = 62.1638
+margin_top = 263.896
+margin_right = 192.164
+margin_bottom = 309.896
+rect_scale = Vector2( 1.9, 1.9 )
 focus_mode = 0
+enabled_focus_mode = 0
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="selected" type="Sprite" parent="Menu/HBoxContainer/TextureRect/SettingsButton"]
+[node name="selected" type="Sprite" parent="Menu/Window/SettingsButton"]
 visible = false
-position = Vector2( 65.487, 22.6082 )
-scale = Vector2( 2.99666, 2.9897 )
+position = Vector2( 64.9614, 21.5744 )
+scale = Vector2( 2.98763, 2.90282 )
 texture = ExtResource( 1 )
 
-[node name="ExitButton" type="Button" parent="Menu/HBoxContainer/TextureRect"]
-margin_left = -52.0
-margin_top = 44.0
-margin_right = 80.0
-margin_bottom = 91.0
+[node name="ExitButton" type="Button" parent="Menu/Window"]
+margin_left = 61.0
+margin_top = 369.0
+margin_right = 193.0
+margin_bottom = 415.0
+rect_scale = Vector2( 1.9, 1.9 )
 focus_mode = 0
+enabled_focus_mode = 0
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="selected" type="Sprite" parent="Menu/HBoxContainer/TextureRect/ExitButton"]
+[node name="selected" type="Sprite" parent="Menu/Window/ExitButton"]
 visible = false
-position = Vector2( 65.4569, 23.674 )
-scale = Vector2( 2.99495, 2.99338 )
+position = Vector2( 65.4569, 23.4105 )
+scale = Vector2( 2.99495, 2.96238 )
 texture = ExtResource( 1 )
+
+[node name="Animation" type="AnimationPlayer" parent="Menu/Window"]
+anims/close = ExtResource( 21 )
+anims/open = SubResource( 13 )
+
+[node name="Control" type="Control" parent="Menu"]
+margin_left = 960.0
+margin_top = 540.0
+margin_right = 960.0
+margin_bottom = 540.0
 
 [node name="TimeMachine" type="Node2D" parent="."]
 position = Vector2( 0, -325 )
 script = ExtResource( 18 )
 
 [node name="Transit" parent="TimeMachine" instance=ExtResource( 12 )]
-margin_left = 28.4203
-margin_top = 5.14144
-margin_right = 28.4203
-margin_bottom = 5.14144
+margin_left = 86.6914
+margin_top = 61.0342
+margin_right = 86.6914
+margin_bottom = 61.0342
 
 [connection signal="timeout" from="AutoPlayer/Delay" to="AutoPlayer" method="_on_Delay_timeout"]
 [connection signal="timeout" from="AutoPlayer/Timer" to="AutoPlayer" method="_on_Timer_timeout"]
 [connection signal="timeout" from="AutoPlayer/StayTime" to="AutoPlayer" method="_on_StayTime_timeout"]
-[connection signal="mouse_entered" from="Menu/HBoxContainer/TextureRect/PlayButton" to="." method="_on_PlayButton_mouse_entered"]
-[connection signal="pressed" from="Menu/HBoxContainer/TextureRect/PlayButton" to="." method="_on_PlayButton_pressed"]
-[connection signal="mouse_entered" from="Menu/HBoxContainer/TextureRect/LoadButton" to="." method="_on_LoadButton_mouse_entered"]
-[connection signal="pressed" from="Menu/HBoxContainer/TextureRect/LoadButton" to="." method="_on_LoadButton_pressed"]
-[connection signal="mouse_entered" from="Menu/HBoxContainer/TextureRect/SettingsButton" to="." method="_on_SettingsButton_mouse_entered"]
-[connection signal="pressed" from="Menu/HBoxContainer/TextureRect/SettingsButton" to="." method="_on_SettingsButton_pressed"]
-[connection signal="mouse_entered" from="Menu/HBoxContainer/TextureRect/ExitButton" to="." method="_on_ExitButton_mouse_entered"]
-[connection signal="pressed" from="Menu/HBoxContainer/TextureRect/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="mouse_entered" from="Menu/Window/PlayButton" to="." method="_on_PlayButton_mouse_entered"]
+[connection signal="pressed" from="Menu/Window/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="mouse_entered" from="Menu/Window/LoadButton" to="." method="_on_LoadButton_mouse_entered"]
+[connection signal="pressed" from="Menu/Window/LoadButton" to="." method="_on_LoadButton_pressed"]
+[connection signal="mouse_entered" from="Menu/Window/SettingsButton" to="." method="_on_SettingsButton_mouse_entered"]
+[connection signal="pressed" from="Menu/Window/SettingsButton" to="." method="_on_SettingsButton_pressed"]
+[connection signal="mouse_entered" from="Menu/Window/ExitButton" to="." method="_on_ExitButton_mouse_entered"]
+[connection signal="pressed" from="Menu/Window/ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="animation_finished" from="Menu/Window/Animation" to="." method="_on_Animation_animation_finished"]

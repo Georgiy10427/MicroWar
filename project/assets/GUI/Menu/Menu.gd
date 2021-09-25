@@ -1,10 +1,10 @@
 extends Node2D
 
 # Buttons
-onready var play_button:BaseButton = $Menu/HBoxContainer/TextureRect/PlayButton
-onready var load_button:BaseButton = $Menu/HBoxContainer/TextureRect/LoadButton
-onready var settings_button:BaseButton = $Menu/HBoxContainer/TextureRect/SettingsButton
-onready var exit_button:BaseButton = $Menu/HBoxContainer/TextureRect/ExitButton
+onready var play_button:BaseButton = $Menu/Window/PlayButton
+onready var load_button:BaseButton = $Menu/Window/LoadButton
+onready var settings_button:BaseButton = $Menu/Window/SettingsButton
+onready var exit_button:BaseButton = $Menu/Window/ExitButton
 onready var menu_buttons:Array = [play_button, load_button, settings_button, exit_button]
 # Container
 onready var container:Container = $Menu
@@ -12,10 +12,20 @@ onready var container:Container = $Menu
 onready var transit:Control = $Transit
 # Time Machine
 onready var time_machine:Node2D = $TimeMachine
+# Animation player (for transit)
+onready var animation = $Menu/Window/Animation
 # Saves state for current work load button
 onready var saves:int = time_machine.get_number_of_saves()
+# Settings window
+onready var settings_window = $Settings
+
+func open_window():
+	container.visible = true
+	animation.play("open")
 
 func _ready():
+	settings_window.hide_window()
+	settings_window.visible = true
 	# Turn off time machine for user
 	$TimeMachine.can_use = false
 	# Init disable marker 
@@ -55,7 +65,7 @@ func _on_LoadButton_mouse_entered():
 		disable_marker.visible = true
 
 func _on_SettingsButton_pressed():
-	container.visible = false
+	animation.play("close")
 
 func _on_SettingsButton_mouse_entered():
 	button_select_callback(settings_button)
@@ -65,4 +75,10 @@ func _on_ExitButton_pressed():
 
 func _on_ExitButton_mouse_entered():
 	button_select_callback(exit_button)
+
+func _on_Animation_animation_finished(anim_name):
+	if anim_name == "close":
+		container.visible = false
+		settings_window.visible = true
+		settings_window.open_window()
 
