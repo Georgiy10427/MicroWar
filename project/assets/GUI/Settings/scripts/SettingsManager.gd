@@ -29,12 +29,8 @@ func _ready():
 		create_default_config(settings_config)
 	# Apply config settings
 	apply_settings(settings_config)
-	# Save config
-	err = settings_config.save(config_path)
-	if err != OK:
-		assert(err)
-	else:
-		print("Seccess save settings config file.")
+	save_config()
+	
 
 func apply_resolution(config):
 	# Apply resolution and fullscreen mode
@@ -104,3 +100,9 @@ func create_default_config(config):
 		config.set_value("Control", action, InputMap.get_action_list(action)[0])
 	# Audio
 	config.set_value("Audio", "master", 1.0)
+
+func save_config():
+	var err = settings_config.save(config_path)
+	if err != OK:
+		assert(err)
+	return err

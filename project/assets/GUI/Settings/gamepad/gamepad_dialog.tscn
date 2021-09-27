@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/GUI/Settings/themes/values_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/GUI/Settings/themes/title_theme.tres" type="Theme" id=3]
+
+[node name="gamepad_dialog" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 36.0
+margin_right = -6.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="leftBtn" type="Button" parent="."]
+visible = false
+margin_left = 141.0
+margin_top = 221.0
+margin_right = 509.0
+margin_bottom = 832.0
+theme = ExtResource( 2 )
+text = "left"
+
+[node name="rightBtn" type="Button" parent="."]
+visible = false
+margin_left = 1408.0
+margin_top = 191.0
+margin_right = 1796.0
+margin_bottom = 832.0
+theme = ExtResource( 3 )
+text = "right"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="upBtn" type="Button" parent="."]
+visible = false
+margin_left = 687.0
+margin_top = 59.0
+margin_right = 1293.0
+margin_bottom = 193.0
+theme = ExtResource( 3 )
+text = "up"
+
+[node name="downBtn" type="Button" parent="."]
+visible = false
+margin_left = 658.971
+margin_top = 859.627
+margin_right = 1332.97
+margin_bottom = 1001.63
+theme = ExtResource( 3 )
+text = "down"
+
+[connection signal="pressed" from="leftBtn" to="." method="_on_leftBtn_pressed"]
+[connection signal="pressed" from="rightBtn" to="." method="_on_rightBtn_pressed"]
