@@ -132,6 +132,11 @@ ui_load={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":10,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+ui_click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [input_devices]
 
@@ -156,11 +161,9 @@ test="en"
 
 [rendering]
 
-quality/intended_usage/framebuffer_allocation=0
-quality/intended_usage/framebuffer_allocation.mobile=0
 threads/thread_model=2
-quality/filters/anisotropic_filter_level=8
+quality/filters/anisotropic_filter_level=10
 quality/subsurface_scattering/quality=2
-quality/filters/msaa=4
+quality/filters/msaa=1
 quality/filters/use_debanding=true
 quality/dynamic_fonts/use_oversampling=false
