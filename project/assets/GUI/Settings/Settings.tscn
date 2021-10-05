@@ -1,11 +1,9 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://assets/GUI/Settings/ui_elements/window.png" type="Texture" id=1]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/arrows/right_arrow.png" type="Texture" id=2]
 [ext_resource path="res://assets/GUI/Settings/themes/font_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/arrows/left_arrow.png" type="Texture" id=4]
-[ext_resource path="res://assets/GUI/Settings/scripts/SelectFPS.gd" type="Script" id=5]
-[ext_resource path="res://assets/GUI/Settings/themes/values_theme.tres" type="Theme" id=6]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/checkbox/checkbox_active.png" type="Texture" id=7]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/checkbox/checkbox_not_active.png" type="Texture" id=8]
 [ext_resource path="res://assets/GUI/Settings/scripts/Settings.gd" type="Script" id=9]
@@ -13,7 +11,6 @@
 [ext_resource path="res://assets/GUI/Settings/themes/subtitle_theme.tres" type="Theme" id=11]
 [ext_resource path="res://assets/GUI/Settings/scripts/SelectResolusion.gd" type="Script" id=12]
 [ext_resource path="res://assets/GUI/Settings/themes/slider_theme.tres" type="Theme" id=13]
-[ext_resource path="res://assets/GUI/Settings/scripts/VSynsCheckbox.gd" type="Script" id=14]
 [ext_resource path="res://assets/GUI/Settings/scripts/GrathicsQualitySelect.gd" type="Script" id=15]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/info_button1.png" type="Texture" id=16]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/info_button2.png" type="Texture" id=17]
@@ -25,7 +22,7 @@
 [ext_resource path="res://assets/GUI/Settings/scripts/ActionRemapButton.gd" type="Script" id=23]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/tabs/sources/tab2.png" type="Texture" id=24]
 [ext_resource path="res://assets/GUI/Settings/themes/btn_values_theme.tres" type="Theme" id=25]
-[ext_resource path="res://assets/GUI/Settings/scripts/FullscreenCheckbox.gd" type="Script" id=26]
+[ext_resource path="res://assets/GUI/Settings/scripts/GrathicsParameters.gd" type="Script" id=27]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -149,23 +146,17 @@ __meta__ = {
 }
 
 [node name="MainWindow" type="CenterContainer" parent="."]
-anchor_left = -0.000122897
-anchor_top = 0.000436967
-anchor_right = -0.000122897
-anchor_bottom = 0.000436967
-margin_left = 1.41583
-margin_top = -0.471939
-margin_right = 1917.42
-margin_bottom = 1077.53
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextureRect" type="TextureRect" parent="MainWindow"]
-margin_left = 459.0
-margin_top = 206.0
-margin_right = 1457.0
-margin_bottom = 871.0
+margin_left = 461.0
+margin_top = 207.0
+margin_right = 1459.0
+margin_bottom = 872.0
 texture = ExtResource( 1 )
 
 [node name="Tab1" type="Button" parent="MainWindow/TextureRect"]
@@ -211,6 +202,7 @@ frames = SubResource( 1 )
 animation = "tab2"
 
 [node name="GrathicsSettings" type="Control" parent="MainWindow/TextureRect"]
+visible = false
 margin_left = -460.18
 margin_top = -206.0
 margin_right = -420.18
@@ -260,12 +252,12 @@ __meta__ = {
 }
 
 [node name="Grathics" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsSettingsTitle/Subtitle"]
-margin_left = 381.0
-margin_right = 506.0
+margin_left = 394.0
+margin_right = 493.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "Графика"
+text = "Общие"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -291,21 +283,24 @@ __meta__ = {
 }
 
 [node name="GrathicsParameters" type="ScrollContainer" parent="MainWindow/TextureRect/GrathicsSettings"]
-margin_left = 514.0
+margin_left = 516.0
 margin_top = 466.0
-margin_right = 1404.0
+margin_right = 1399.0
 margin_bottom = 824.0
 theme = ExtResource( 13 )
 scroll_horizontal_enabled = false
+script = ExtResource( 27 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters"]
-margin_right = 869.0
+[node name="Container" type="VBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters"]
+margin_right = 883.0
 margin_bottom = 350.0
+size_flags_horizontal = 3
 
-[node name="Resolusion" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="Resolusion" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
+visible = false
 margin_right = 869.0
 margin_bottom = 39.0
 size_flags_horizontal = 3
@@ -314,7 +309,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion"]
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion"]
 margin_right = 163.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
@@ -324,7 +319,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion"]
+[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion"]
 margin_left = 167.0
 margin_right = 615.0
 margin_bottom = 39.0
@@ -334,7 +329,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion"]
+[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion"]
 margin_left = 619.0
 margin_right = 659.0
 margin_bottom = 39.0
@@ -343,7 +338,7 @@ enabled_focus_mode = 0
 icon = ExtResource( 4 )
 flat = true
 
-[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion"]
+[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion"]
 margin_left = 663.0
 margin_right = 825.0
 margin_bottom = 39.0
@@ -354,7 +349,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion"]
+[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion"]
 margin_left = 829.0
 margin_right = 869.0
 margin_bottom = 39.0
@@ -363,18 +358,74 @@ enabled_focus_mode = 0
 icon = ExtResource( 2 )
 flat = true
 
-[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="Language" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
+margin_right = 883.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language"]
+margin_right = 68.0
+margin_bottom = 39.0
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language/Left"]
+margin_right = 68.0
+margin_bottom = 39.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "Язык"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language"]
+margin_left = 682.0
+margin_right = 883.0
+margin_bottom = 39.0
+size_flags_horizontal = 10
+
+[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language/Right"]
+margin_right = 40.0
+margin_bottom = 39.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 4 )
+flat = true
+
+[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language/Right"]
+margin_left = 44.0
+margin_right = 157.0
+margin_bottom = 39.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = "Русский"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language/Right"]
+margin_left = 161.0
+margin_right = 201.0
+margin_bottom = 39.0
+focus_mode = 0
+enabled_focus_mode = 0
+icon = ExtResource( 2 )
+flat = true
+
+[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 margin_top = 43.0
-margin_right = 869.0
+margin_right = 883.0
 margin_bottom = 82.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Space2"]
-margin_left = 434.0
-margin_right = 434.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Space2"]
+margin_left = 441.0
+margin_right = 441.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -382,16 +433,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GrathicsQuality" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="GrathicsQuality" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 margin_top = 86.0
-margin_right = 869.0
+margin_right = 883.0
 margin_bottom = 125.0
+size_flags_horizontal = 3
 script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality"]
+margin_right = 129.0
+margin_bottom = 39.0
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality/Left"]
 margin_right = 129.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
@@ -401,28 +457,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_left = 133.0
-margin_right = 637.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality"]
+margin_left = 693.0
+margin_right = 883.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                                        "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 10
 
-[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_left = 641.0
-margin_right = 681.0
+[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality/Right"]
+margin_right = 40.0
 margin_bottom = 39.0
 focus_mode = 0
 enabled_focus_mode = 0
 icon = ExtResource( 4 )
 flat = true
 
-[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_left = 685.0
-margin_right = 787.0
+[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality/Right"]
+margin_left = 44.0
+margin_right = 146.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
@@ -431,9 +482,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality"]
-margin_left = 791.0
-margin_right = 831.0
+[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality/Right"]
+margin_left = 150.0
+margin_right = 190.0
 margin_bottom = 39.0
 focus_mode = 0
 enabled_focus_mode = 0
@@ -443,7 +494,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 visible = false
 margin_top = 129.0
 margin_right = 869.0
@@ -453,7 +504,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Space3"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Space3"]
 margin_left = 434.0
 margin_right = 434.0
 margin_bottom = 39.0
@@ -463,17 +514,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FPS" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="FPS" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 visible = false
 margin_top = 172.0
 margin_right = 869.0
 margin_bottom = 211.0
-script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FPS"]
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/FPS"]
 margin_right = 279.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
@@ -483,7 +533,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FPS"]
+[node name="Button" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/FPS"]
 margin_left = 283.0
 margin_right = 323.0
 margin_bottom = 39.0
@@ -494,7 +544,7 @@ custom_styles/normal = SubResource( 4 )
 enabled_focus_mode = 0
 text = "          "
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FPS"]
+[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/FPS"]
 margin_left = 327.0
 margin_right = 670.0
 margin_bottom = 39.0
@@ -504,7 +554,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FPS"]
+[node name="LeftButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/FPS"]
 margin_left = 674.0
 margin_right = 714.0
 margin_bottom = 39.0
@@ -516,7 +566,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FPS"]
+[node name="Value" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/FPS"]
 margin_left = 718.0
 margin_right = 750.0
 margin_bottom = 39.0
@@ -527,7 +577,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FPS"]
+[node name="RightButton" type="Button" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/FPS"]
 margin_left = 754.0
 margin_right = 794.0
 margin_bottom = 39.0
@@ -539,18 +589,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 margin_top = 129.0
-margin_right = 869.0
+margin_right = 883.0
 margin_bottom = 168.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Space4"]
-margin_left = 434.0
-margin_right = 434.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Space4"]
+margin_left = 441.0
+margin_right = 441.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -558,16 +608,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VSyns" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="VSyns" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 margin_top = 172.0
-margin_right = 869.0
+margin_right = 883.0
 margin_bottom = 253.0
-script = ExtResource( 14 )
+size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/VSyns"]
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/VSyns"]
+margin_right = 217.0
+margin_bottom = 81.0
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/VSyns/Left"]
 margin_right = 217.0
 margin_bottom = 81.0
 theme = ExtResource( 3 )
@@ -578,21 +632,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/VSyns"]
-margin_left = 221.0
-margin_top = 21.0
-margin_right = 704.0
-margin_bottom = 60.0
-theme = ExtResource( 3 )
-text = "                                                                     "
-align = 1
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/VSyns"]
+margin_left = 767.0
+margin_right = 811.0
+margin_bottom = 81.0
+size_flags_horizontal = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/VSyns"]
-margin_left = 708.0
-margin_right = 752.0
+[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/VSyns/Right"]
+margin_right = 44.0
 margin_bottom = 81.0
 focus_mode = 0
 custom_icons/radio_checked = ExtResource( 8 )
@@ -601,18 +651,25 @@ custom_icons/radio_unchecked = ExtResource( 8 )
 custom_icons/unchecked = ExtResource( 8 )
 enabled_focus_mode = 0
 
-[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/VSyns"]
+margin_left = 815.0
+margin_top = 33.0
+margin_right = 883.0
+margin_bottom = 47.0
+text = "                 "
+
+[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 margin_top = 257.0
-margin_right = 869.0
+margin_right = 883.0
 margin_bottom = 296.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Space5"]
-margin_left = 434.0
-margin_right = 434.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Space5"]
+margin_left = 441.0
+margin_right = 441.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -620,16 +677,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FullScreen" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="Fullscreen" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 margin_top = 300.0
-margin_right = 869.0
+margin_right = 883.0
 margin_bottom = 350.0
-script = ExtResource( 26 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FullScreen"]
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Fullscreen"]
+margin_right = 327.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Fullscreen/Left"]
 margin_top = 5.0
 margin_right = 327.0
 margin_bottom = 44.0
@@ -640,21 +700,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FullScreen"]
-margin_left = 331.0
-margin_top = 5.0
-margin_right = 702.0
-margin_bottom = 44.0
-theme = ExtResource( 3 )
-text = "                                                     "
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Fullscreen"]
+margin_left = 767.0
+margin_right = 811.0
+margin_bottom = 50.0
+size_flags_horizontal = 10
 
-[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FullScreen"]
-margin_left = 706.0
-margin_right = 750.0
+[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Fullscreen/Right"]
+margin_right = 44.0
 margin_bottom = 50.0
 focus_mode = 0
 custom_icons/radio_checked = ExtResource( 8 )
@@ -664,7 +717,14 @@ custom_icons/unchecked = ExtResource( 8 )
 pressed = true
 enabled_focus_mode = 0
 
-[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Fullscreen"]
+margin_left = 815.0
+margin_top = 18.0
+margin_right = 883.0
+margin_bottom = 32.0
+text = "                 "
+
+[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container"]
 visible = false
 margin_top = 354.0
 margin_right = 869.0
@@ -674,7 +734,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Space6"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Space6"]
 margin_left = 434.0
 margin_right = 434.0
 margin_bottom = 39.0
@@ -685,7 +745,6 @@ __meta__ = {
 }
 
 [node name="ControlSettings" type="Control" parent="MainWindow/TextureRect"]
-visible = false
 margin_left = 54.0
 margin_top = 119.0
 margin_right = 54.0
@@ -695,18 +754,18 @@ __meta__ = {
 }
 
 [node name="Content" type="VBoxContainer" parent="MainWindow/TextureRect/ControlSettings"]
-margin_right = 861.0
+margin_right = 878.0
 margin_bottom = 476.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Head" type="VBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
-margin_right = 861.0
+margin_right = 878.0
 margin_bottom = 134.0
 
 [node name="Title" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Head"]
-margin_right = 861.0
+margin_right = 878.0
 margin_bottom = 51.0
 size_flags_horizontal = 3
 theme = ExtResource( 10 )
@@ -739,14 +798,14 @@ __meta__ = {
 
 [node name="Subtitle" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/Head"]
 margin_top = 55.0
-margin_right = 861.0
+margin_right = 878.0
 margin_bottom = 91.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Head/Subtitle"]
-margin_right = 861.0
+margin_right = 878.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 theme = ExtResource( 11 )
@@ -759,7 +818,7 @@ __meta__ = {
 
 [node name="VSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/Head"]
 margin_top = 95.0
-margin_right = 861.0
+margin_right = 878.0
 margin_bottom = 134.0
 size_flags_horizontal = 3
 theme = ExtResource( 3 )
@@ -772,7 +831,7 @@ __meta__ = {
 
 [node name="ControlSettings" type="ScrollContainer" parent="MainWindow/TextureRect/ControlSettings/Content"]
 margin_top = 138.0
-margin_right = 861.0
+margin_right = 878.0
 margin_bottom = 476.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -782,43 +841,58 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Content" type="VBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings"]
-margin_right = 861.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings"]
+margin_right = 868.0
+margin_bottom = 641.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer"]
+margin_top = 313.0
+margin_right = 4.0
+margin_bottom = 327.0
+text = " "
+
+[node name="Content" type="VBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer"]
+margin_left = 8.0
+margin_right = 836.0
 margin_bottom = 641.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WalkingForward" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
-margin_right = 851.0
+[node name="WalkingForward" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
+margin_right = 828.0
 margin_bottom = 39.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/WalkingForward"]
-margin_right = 229.0
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/WalkingForward"]
+margin_right = 222.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "  Ходьба вперёд"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 2
 
-[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/WalkingForward"]
-margin_left = 233.0
-margin_right = 513.0
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/WalkingForward/Left"]
+margin_right = 222.0
 margin_bottom = 39.0
 size_flags_horizontal = 3
 theme = ExtResource( 3 )
-text = "   "
-align = 2
+custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
+text = " Ходьба вперёд"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/WalkingForward"]
-margin_left = 517.0
-margin_right = 798.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/WalkingForward"]
+margin_left = 519.0
+margin_right = 828.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
+
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/WalkingForward/Right"]
+margin_right = 309.0
 margin_bottom = 39.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -833,26 +907,18 @@ text = "Нажимайте"
 script = ExtResource( 23 )
 action = "ui_right"
 
-[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/WalkingForward"]
-margin_left = 802.0
-margin_right = 851.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "       "
-align = 3
-
-[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 43.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 82.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Space3"]
-margin_left = 425.0
-margin_right = 425.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Space3"]
+margin_left = 414.0
+margin_right = 414.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -860,35 +926,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="WalkingBackward" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="WalkingBackward" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 86.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 125.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/WalkingBackward"]
-margin_right = 213.0
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/WalkingBackward"]
+margin_right = 515.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/WalkingBackward/Left"]
+margin_right = 206.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "  Ходьба назад"
+text = " Ходьба назад"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/WalkingBackward"]
-margin_left = 217.0
-margin_right = 511.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/WalkingBackward"]
+margin_left = 519.0
+margin_right = 828.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                          "
-align = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/WalkingBackward"]
-margin_left = 515.0
-margin_right = 798.0
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/WalkingBackward/Right"]
+margin_right = 309.0
 margin_bottom = 39.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -902,26 +971,18 @@ text = "Нажимайте"
 script = ExtResource( 23 )
 action = "ui_left"
 
-[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/WalkingBackward"]
-margin_left = 802.0
-margin_right = 851.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "       "
-align = 3
-
-[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 129.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 168.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Space4"]
-margin_left = 425.0
-margin_right = 425.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Space4"]
+margin_left = 414.0
+margin_right = 414.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -929,35 +990,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Jump" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Jump" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 172.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 211.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Jump"]
-margin_right = 132.0
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Jump"]
+margin_right = 515.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Jump/Left"]
+margin_right = 125.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "  Прыжок"
+text = " Прыжок"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Jump"]
-margin_left = 136.0
-margin_right = 507.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Jump"]
+margin_left = 519.0
+margin_right = 828.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                     "
-align = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Jump"]
-margin_left = 511.0
-margin_right = 798.0
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Jump/Right"]
+margin_right = 309.0
 margin_bottom = 39.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -970,26 +1034,18 @@ enabled_focus_mode = 0
 text = "Нажимайте"
 script = ExtResource( 23 )
 
-[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Jump"]
-margin_left = 802.0
-margin_right = 851.0
-margin_bottom = 38.0
-theme = ExtResource( 6 )
-text = "       "
-align = 3
-
-[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 215.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 254.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Space5"]
-margin_left = 425.0
-margin_right = 425.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Space5"]
+margin_left = 414.0
+margin_right = 414.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -997,35 +1053,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Squat" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Squat" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 258.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 297.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Squat"]
-margin_right = 190.0
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Squat"]
+margin_right = 515.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Squat/Left"]
+margin_right = 183.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "  Приседание"
+text = " Приседание"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Squat"]
-margin_left = 194.0
-margin_right = 509.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Squat"]
+margin_left = 519.0
+margin_right = 828.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                             "
-align = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Squat"]
-margin_left = 513.0
-margin_right = 798.0
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Squat/Right"]
+margin_right = 309.0
 margin_bottom = 39.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -1039,26 +1098,18 @@ text = "Нажимайте"
 script = ExtResource( 23 )
 action = "ui_squat"
 
-[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Squat"]
-margin_left = 802.0
-margin_right = 851.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "       "
-align = 3
-
-[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 301.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 340.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Space6"]
-margin_left = 425.0
-margin_right = 425.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Space6"]
+margin_left = 414.0
+margin_right = 414.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1066,35 +1117,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Run" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Run" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 344.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 383.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Run"]
-margin_right = 62.0
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Run"]
+margin_right = 515.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Run/Left"]
+margin_right = 55.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "  Бег"
+text = " Бег"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Run"]
-margin_left = 66.0
-margin_right = 507.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Run"]
+margin_left = 519.0
+margin_right = 828.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                               "
-align = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Run"]
-margin_left = 511.0
-margin_right = 798.0
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Run/Right"]
+margin_right = 309.0
 margin_bottom = 39.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -1108,26 +1162,18 @@ text = "Нажимайте"
 script = ExtResource( 23 )
 action = "ui_acceleration"
 
-[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Run"]
-margin_left = 802.0
-margin_right = 851.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "       "
-align = 3
-
-[node name="Space7" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Space7" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 387.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 426.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Space7"]
-margin_left = 425.0
-margin_right = 425.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Space7"]
+margin_left = 414.0
+margin_right = 414.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1135,36 +1181,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shot" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Shot" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 430.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 469.0
 rect_pivot_offset = Vector2( 125.393, 604.186 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Shot"]
-margin_right = 131.0
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Shot"]
+margin_right = 515.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Shot/Left"]
+margin_right = 124.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "  Выстрел"
+text = " Выстрел"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Shot"]
-margin_left = 135.0
-margin_right = 506.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Shot"]
+margin_left = 519.0
+margin_right = 828.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                     "
-align = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Shot"]
-margin_left = 510.0
-margin_right = 798.0
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Shot/Right"]
+margin_right = 309.0
 margin_bottom = 39.0
 focus_mode = 0
 size_flags_horizontal = 3
@@ -1177,26 +1226,18 @@ enabled_focus_mode = 0
 text = "Нажимайте"
 script = ExtResource( 23 )
 
-[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Shot"]
-margin_left = 802.0
-margin_right = 851.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "       "
-align = 3
-
-[node name="Space8" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Space8" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 473.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 512.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Space8"]
-margin_left = 425.0
-margin_right = 425.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Space8"]
+margin_left = 414.0
+margin_right = 414.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1204,35 +1245,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MiddleBoy" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="MiddleBoy" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 516.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 555.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/MiddleBoy"]
-margin_right = 202.0
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/MiddleBoy"]
+margin_right = 515.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/MiddleBoy/Left"]
+margin_right = 195.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "  Ближний бой"
+text = " Ближний бой"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/MiddleBoy"]
-margin_left = 206.0
-margin_right = 507.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/MiddleBoy"]
+margin_left = 519.0
+margin_right = 828.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                           "
-align = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/MiddleBoy"]
-margin_left = 511.0
-margin_right = 798.0
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/MiddleBoy/Right"]
+margin_right = 309.0
 margin_bottom = 39.0
 focus_mode = 0
 size_flags_horizontal = 7
@@ -1248,26 +1292,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/MiddleBoy"]
-margin_left = 802.0
-margin_right = 851.0
-margin_bottom = 38.0
-theme = ExtResource( 6 )
-text = "       "
-align = 3
-
-[node name="Space9" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Space9" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 559.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 598.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Space9"]
-margin_left = 425.0
-margin_right = 425.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Space9"]
+margin_left = 414.0
+margin_right = 414.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1275,38 +1311,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Interective" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content"]
+[node name="Interective" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content"]
 margin_top = 602.0
-margin_right = 851.0
+margin_right = 828.0
 margin_bottom = 641.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Interective"]
-margin_right = 255.0
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Interective"]
+margin_right = 515.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Interective/Left"]
+margin_right = 248.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
 custom_colors/font_color = Color( 0.133333, 0.12549, 0.203922, 1 )
-text = "  Взаимодействие"
+text = " Взаимодействие"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LeftSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Interective"]
-margin_left = 259.0
-margin_right = 504.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Interective"]
+margin_left = 519.0
+margin_right = 828.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                   "
-align = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.6
 
-[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Interective"]
-margin_left = 508.0
-margin_right = 798.0
+[node name="Button" type="Button" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer/Content/Interective/Right"]
+margin_right = 309.0
 margin_bottom = 39.0
 focus_mode = 0
-size_flags_horizontal = 7
+size_flags_horizontal = 3
 theme = ExtResource( 25 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_colors/font_color_hover = Color( 0, 0, 0, 1 )
@@ -1319,13 +1358,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RightSpacer" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/Content/Interective"]
-margin_left = 802.0
-margin_right = 851.0
-margin_bottom = 38.0
-theme = ExtResource( 6 )
+[node name="Label2" type="Label" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings/HBoxContainer"]
+margin_left = 840.0
+margin_top = 313.0
+margin_right = 868.0
+margin_bottom = 327.0
 text = "       "
-align = 3
 
 [node name="AudioSettings" type="Control" parent="MainWindow/TextureRect"]
 visible = false
@@ -1415,24 +1453,33 @@ margin_right = 1404.0
 margin_bottom = 822.0
 theme = ExtResource( 13 )
 scroll_horizontal_enabled = false
-scroll_vertical_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings"]
+[node name="Container" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings"]
 margin_right = 890.0
 margin_bottom = 353.0
 size_flags_horizontal = 3
 
-[node name="Volume" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
-margin_right = 890.0
+[node name="Params" type="VBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container"]
+margin_right = 882.0
+margin_bottom = 353.0
+size_flags_horizontal = 3
+
+[node name="Volume" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
+margin_right = 882.0
 margin_bottom = 39.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Volume"]
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Volume"]
+margin_right = 640.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Volume/Left"]
 margin_right = 151.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
@@ -1442,20 +1489,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Volume"]
-margin_left = 155.0
-margin_right = 638.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Volume"]
+margin_left = 644.0
+margin_right = 882.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                                                     "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.37
 
-[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Volume"]
-margin_left = 642.0
+[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Volume/Right"]
 margin_top = 2.0
-margin_right = 872.0
+margin_right = 238.0
 margin_bottom = 36.0
 grow_horizontal = 2
 size_flags_horizontal = 3
@@ -1469,19 +1512,9 @@ rounded = true
 tick_count = 15
 ticks_on_borders = true
 
-[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Volume"]
-margin_left = 876.0
-margin_right = 890.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "  "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="Space3" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 43.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 63.0
 theme = ExtResource( 20 )
 alignment = 1
@@ -1489,9 +1522,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space3"]
-margin_left = 445.0
-margin_right = 445.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Space3"]
+margin_left = 441.0
+margin_right = 441.0
 margin_bottom = 20.0
 theme = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1499,7 +1532,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="Space5" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 visible = false
 margin_top = 67.0
 margin_right = 890.0
@@ -1510,7 +1543,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space5"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Space5"]
 margin_left = 445.0
 margin_right = 445.0
 margin_bottom = 20.0
@@ -1520,15 +1553,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SoundtrackCheckbox" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="Soundtrack" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 67.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 117.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Soundtrack"]
+margin_right = 391.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Soundtrack/Left"]
 margin_top = 5.0
 margin_right = 154.0
 margin_bottom = 44.0
@@ -1539,23 +1577,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
-margin_left = 158.0
-margin_top = 5.0
-margin_right = 732.0
-margin_bottom = 44.0
-theme = ExtResource( 3 )
-text = "                                                                                  "
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Soundtrack"]
+margin_left = 742.0
+margin_right = 786.0
+margin_bottom = 50.0
+size_flags_horizontal = 10
 
-[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackCheckbox"]
-margin_left = 736.0
-margin_right = 780.0
+[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Soundtrack/Right"]
+margin_right = 44.0
 margin_bottom = 50.0
 focus_mode = 0
+size_flags_horizontal = 10
 size_flags_vertical = 5
 custom_icons/radio_checked = ExtResource( 8 )
 custom_icons/checked = ExtResource( 7 )
@@ -1564,18 +1596,25 @@ custom_icons/unchecked = ExtResource( 8 )
 pressed = true
 enabled_focus_mode = 0
 
-[node name="SubSpace" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Soundtrack"]
+margin_left = 790.0
+margin_top = 18.0
+margin_right = 882.0
+margin_bottom = 32.0
+text = "                       "
+
+[node name="SubSpace" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 121.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 141.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SubSpace"]
-margin_left = 445.0
-margin_right = 445.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SubSpace"]
+margin_left = 441.0
+margin_right = 441.0
 margin_bottom = 20.0
 theme = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1583,15 +1622,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SoundtrackValue" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="SoundtrackValue" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 145.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 184.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackValue"]
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundtrackValue"]
+margin_right = 640.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundtrackValue/Left"]
 margin_right = 323.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
@@ -1601,20 +1645,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackValue"]
-margin_left = 327.0
-margin_right = 635.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundtrackValue"]
+margin_left = 644.0
+margin_right = 882.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                            "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.37
 
-[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackValue"]
-margin_left = 639.0
+[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundtrackValue/Right"]
 margin_top = 2.0
-margin_right = 872.0
+margin_right = 238.0
 margin_bottom = 36.0
 grow_horizontal = 2
 size_flags_horizontal = 3
@@ -1628,28 +1668,18 @@ rounded = true
 tick_count = 15
 ticks_on_borders = true
 
-[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundtrackValue"]
-margin_left = 876.0
-margin_right = 890.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "  "
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="Space2" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 188.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 208.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space2"]
-margin_left = 445.0
-margin_right = 445.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Space2"]
+margin_left = 441.0
+margin_right = 441.0
 margin_bottom = 20.0
 theme = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1657,18 +1687,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="Space6" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 212.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 232.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space6"]
-margin_left = 445.0
-margin_right = 445.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Space6"]
+margin_left = 441.0
+margin_right = 441.0
 margin_bottom = 20.0
 theme = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1677,15 +1707,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SoundEffects" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="SoundEffects" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 236.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 286.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundEffects"]
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundEffects"]
+margin_right = 391.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundEffects/Left"]
 margin_top = 5.0
 margin_right = 275.0
 margin_bottom = 44.0
@@ -1696,21 +1731,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundEffects"]
-margin_left = 279.0
-margin_top = 5.0
-margin_right = 734.0
-margin_bottom = 44.0
-theme = ExtResource( 3 )
-text = "                                                                 "
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundEffects"]
+margin_left = 742.0
+margin_right = 786.0
+margin_bottom = 50.0
+size_flags_horizontal = 10
 
-[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SoundEffects"]
-margin_left = 738.0
-margin_right = 782.0
+[node name="Value" type="CheckBox" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundEffects/Right"]
+margin_right = 44.0
 margin_bottom = 50.0
 focus_mode = 0
 size_flags_vertical = 5
@@ -1721,18 +1749,25 @@ custom_icons/unchecked = ExtResource( 8 )
 pressed = true
 enabled_focus_mode = 0
 
-[node name="SubSpace2" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SoundEffects"]
+margin_left = 790.0
+margin_top = 18.0
+margin_right = 882.0
+margin_bottom = 32.0
+text = "                       "
+
+[node name="SubSpace2" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 290.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 310.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/SubSpace2"]
-margin_left = 445.0
-margin_right = 445.0
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/SubSpace2"]
+margin_left = 441.0
+margin_right = 441.0
 margin_bottom = 20.0
 theme = ExtResource( 20 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -1740,7 +1775,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="Space4" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 visible = false
 margin_top = 266.0
 margin_right = 875.0
@@ -1751,7 +1786,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/Space4"]
+[node name="Spacer" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/Space4"]
 margin_left = 437.0
 margin_right = 437.0
 margin_bottom = 20.0
@@ -1761,15 +1796,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VolumeSoundEffects" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer"]
+[node name="VolumeSoundEffects" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params"]
 margin_top = 314.0
-margin_right = 890.0
+margin_right = 882.0
 margin_bottom = 353.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name of the parameter" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/VolumeSoundEffects"]
+[node name="Left" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/VolumeSoundEffects"]
+margin_right = 640.0
+margin_bottom = 39.0
+size_flags_horizontal = 3
+
+[node name="Name" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/VolumeSoundEffects/Left"]
 margin_right = 311.0
 margin_bottom = 39.0
 theme = ExtResource( 3 )
@@ -1779,20 +1819,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Space" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/VolumeSoundEffects"]
-margin_left = 315.0
-margin_right = 637.0
+[node name="Right" type="HBoxContainer" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/VolumeSoundEffects"]
+margin_left = 644.0
+margin_right = 882.0
 margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "                                              "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+size_flags_horizontal = 11
+size_flags_stretch_ratio = 0.37
 
-[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/VolumeSoundEffects"]
-margin_left = 641.0
+[node name="Value" type="HSlider" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container/Params/VolumeSoundEffects/Right"]
 margin_top = 2.0
-margin_right = 872.0
+margin_right = 238.0
 margin_bottom = 36.0
 grow_horizontal = 2
 size_flags_horizontal = 3
@@ -1806,15 +1842,12 @@ rounded = true
 tick_count = 15
 ticks_on_borders = true
 
-[node name="Space2" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/VBoxContainer/VolumeSoundEffects"]
-margin_left = 876.0
+[node name="Label" type="Label" parent="MainWindow/TextureRect/AudioSettings/AudioSettings/Container"]
+margin_left = 886.0
+margin_top = 169.0
 margin_right = 890.0
-margin_bottom = 39.0
-theme = ExtResource( 3 )
-text = "  "
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_bottom = 183.0
+text = " "
 
 [node name="EmptyContainer" type="VBoxContainer" parent="MainWindow/TextureRect"]
 visible = false
@@ -1844,18 +1877,21 @@ anims/hidden = SubResource( 9 )
 anims/open = SubResource( 10 )
 
 [node name="Control" type="Control" parent="MainWindow"]
-margin_left = 958.0
-margin_top = 539.0
-margin_right = 958.0
-margin_bottom = 539.0
+margin_left = 960.0
+margin_top = 540.0
+margin_right = 960.0
+margin_bottom = 540.0
 
 [connection signal="pressed" from="MainWindow/TextureRect/Tab1" to="." method="_on_Tab1_pressed"]
 [connection signal="pressed" from="MainWindow/TextureRect/Tab2" to="." method="_on_Tab2_pressed"]
 [connection signal="pressed" from="MainWindow/TextureRect/Tab3" to="." method="_on_Tab3_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion/LeftButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion" method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion/RightButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/Resolusion" method="_on_RightButton_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality/LeftButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality" method="_on_LeftButton_pressed"]
-[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality/RightButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/GrathicsQuality" method="_on_RightButton_pressed"]
-[connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/VSyns/Value" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/VSyns" method="_on_Value_toggled"]
-[connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FullScreen/Value" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/VBoxContainer/FullScreen" method="_on_Value_toggled"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion/LeftButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion" method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion/RightButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Resolusion" method="_on_RightButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language/Right/LeftButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language" method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language/Right/RightButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Language" method="_on_RightButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality/Right/LeftButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality" method="_on_LeftButton_pressed"]
+[connection signal="pressed" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality/Right/RightButton" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/GrathicsQuality" method="_on_RightButton_pressed"]
+[connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/VSyns/Right/Value" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/VSyns" method="_on_Value_toggled"]
+[connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Fullscreen/Right/Value" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters" method="_on_Value_toggled"]
+[connection signal="toggled" from="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Fullscreen/Right/Value" to="MainWindow/TextureRect/GrathicsSettings/GrathicsParameters/Container/Fullscreen" method="_on_Value_toggled"]
 [connection signal="pressed" from="MainWindow/TextureRect/CloseButton" to="." method="_on_CloseButton_pressed"]
