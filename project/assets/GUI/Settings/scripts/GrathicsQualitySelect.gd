@@ -1,15 +1,19 @@
 extends HBoxContainer
 
-onready var value = $Value
+onready var value = $Right/Value
 onready var spacer = $Space
 
-var values = ["Низкое", "Среднее", "Высокое"]
-var current_value:int = 0
-var value_width = len(values[current_value])
-onready var spacer_width = len(spacer.text)
-var default_value = "average"
+export var values = ["Низкое", "Среднее", "Высокое"]
+export var current_value:int = 0
 
-func user_value_to_config(value:String, values:Array):
+# Used to center the value in the box:
+var value_width = len(values[current_value])
+#onready var spacer_width = len(spacer.text)
+
+export var default_value = "average" # Used if we can't read value from config
+
+func convert_val(value:String, values:Array):
+	# This function converts a displayed value to the config format.
 	var err = values.find(value)
 	if err != -1:
 		match err:
@@ -49,13 +53,13 @@ func _on_LeftButton_pressed():
 	
 	value.text = values[current_value]
 	
-	var add_width = len(value.text) - value_width
-	spacer.text = ""
-	for _i in range(spacer_width + -add_width):
-		spacer.text += " "
+#	var add_width = len(value.text) - value_width
+#	spacer.text = ""
+#	for _i in range(spacer_width + -add_width):
+#		spacer.text += " "
 
 	save_value(
-		user_value_to_config(values[current_value], values)
+		convert_val(values[current_value], values)
 	)
 
 func _on_RightButton_pressed():
@@ -66,12 +70,11 @@ func _on_RightButton_pressed():
 	
 	value.text = values[current_value]
 	
-	var add_width = len(value.text) - value_width
-	spacer.text = ""
-	for _i in range(spacer_width + -add_width):
-		spacer.text += " "
+#	var add_width = len(value.text) - value_width
+#	spacer.text = ""
+#	for _i in range(spacer_width + -add_width):
+#		spacer.text += " "
 	
 	save_value(
-		user_value_to_config(values[current_value], values)
+		convert_val(values[current_value], values)
 	)
-	
