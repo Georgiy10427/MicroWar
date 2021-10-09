@@ -1,0 +1,30 @@
+keys,en,ru
+settings_title,Settings,Настройки
+general_subtitle,General,Общие
+language_param,Language,Язык
+russian,Russian,Русский
+english,English,Английский
+quality,Quality,Качество
+low,Low,Низкое
+medium,Medium,Среднее
+high,High,Высокое
+vsync,Vsync,"Вертикальная
+Синхронизация"
+fullscreen_mode,Fullscreen mode,Полноэкранный режим
+control,Control,Управление
+main_charecter,The main character,Главный герой
+walking_forward,Walking forward,Ходьба вперёд
+walking_backward,Walking backward,Хольба назад
+jump,Jump,Прыжок
+squat,Squat,Приседание
+run,Run,Бег
+shot,Shot,Выстрел
+сlose_fighting,Сlose-in fighting,Ближний бой
+interaction,Interaction,Взаимодействие
+sound,Sound,Звук
+audio-setting,Audio setting,Настройка аудио
+volume,Volume,Громкость
+soundtrack,Soundtrack,Саундтрек
+soundtrack_volume,Soundtrack volume,Громкость саундтрека
+sound_effects,Sound effects,Звуковые эффекты
+volume_sound_effects,Volume of sound effects,Громкость звуковых эффектов
