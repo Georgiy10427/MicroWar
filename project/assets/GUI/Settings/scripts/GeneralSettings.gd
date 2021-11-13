@@ -128,4 +128,4 @@ func _on_vsync_toggled(button_pressed: bool) -> void:
 func _fullscreen_toggled(button_pressed) -> void:
 	settings.settings_config.set_value("Grathics", "fullscreen", button_pressed)
 	settings.save_config()
-	settings.apply_resolution(settings.settings_config)
+	settings.configure_window(settings.settings_config)

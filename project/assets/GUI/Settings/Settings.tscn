@@ -5,13 +5,13 @@
 [ext_resource path="res://assets/GUI/Settings/themes/font_theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/arrows/left_arrow.png" type="Texture" id=4]
 [ext_resource path="res://assets/GUI/Settings/scripts/GeneralSettings.gd" type="Script" id=5]
-[ext_resource path="res://assets/GUI/Settings/ControlSettings.gd" type="Script" id=6]
+[ext_resource path="res://assets/GUI/Settings/scripts/ControlSettings.gd" type="Script" id=6]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/checkbox/checkbox_active.png" type="Texture" id=7]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/checkbox/checkbox_not_active.png" type="Texture" id=8]
 [ext_resource path="res://assets/GUI/Settings/scripts/Settings.gd" type="Script" id=9]
 [ext_resource path="res://assets/GUI/Settings/themes/title_theme.tres" type="Theme" id=10]
 [ext_resource path="res://assets/GUI/Settings/themes/subtitle_theme.tres" type="Theme" id=11]
-[ext_resource path="res://assets/GUI/Settings/AudioSettings.gd" type="Script" id=12]
+[ext_resource path="res://assets/GUI/Settings/scripts/AudioSettings.gd" type="Script" id=12]
 [ext_resource path="res://assets/GUI/Settings/themes/slider_theme.tres" type="Theme" id=13]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/slider_grabber.png" type="Texture" id=18]
 [ext_resource path="res://assets/GUI/Settings/ui_elements/slider.png" type="Texture" id=19]
@@ -489,7 +489,6 @@ margin_bottom = 32.0
 text = "                 "
 
 [node name="ControlSettings" type="Control" parent="MainWindow/TextureRect"]
-visible = false
 margin_left = 54.0
 margin_top = 119.0
 margin_right = 54.0
@@ -581,7 +580,7 @@ __meta__ = {
 }
 
 [node name="Container" type="HBoxContainer" parent="MainWindow/TextureRect/ControlSettings/Content/ControlSettings"]
-margin_right = 878.0
+margin_right = 868.0
 margin_bottom = 641.0
 size_flags_horizontal = 3
 
@@ -1105,6 +1104,7 @@ margin_bottom = 327.0
 text = "       "
 
 [node name="AudioSettings" type="Control" parent="MainWindow/TextureRect"]
+visible = false
 margin_left = -460.18
 margin_top = -206.0
 margin_right = -420.18
