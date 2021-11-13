@@ -21,6 +21,7 @@ func _unhandled_key_input(event):
 	# Note that you can use the _input callback instead, especially if
 	# you want to work with gamepads.
 	remap_action_to(event)
+	settings.settings_config.set_value("Control", action, InputMap.get_action_list(action)[0])
 	pressed = false
 
 func remap_action_to(event):

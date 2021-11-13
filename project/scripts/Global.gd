@@ -1,6 +1,6 @@
 extends Node
 
-var min_window_size:Vector2 = Vector2(320, 240)
+var min_window_size:Vector2 = Vector2(1600, 900)
 var max_window_size:Vector2 = Vector2(1920, 1080)
 
 
@@ -10,4 +10,11 @@ func _ready():
 
 
 func exit():
-	get_tree().quit()
+	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+
+
+func _notification(event):
+	if (event == MainLoop.NOTIFICATION_WM_QUIT_REQUEST):
+		settings.save_window_position()
+		settings.save_window_size()
+		get_tree().quit()
